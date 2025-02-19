@@ -1,0 +1,16 @@
+{
+    "usuario": [
+        {
+            "id_usuario": 1,
+            "nombre": "silvana",
+            "email": "sil@gmail.com",
+            "clave": "password123"
+        },
+        {
+            "id_usuario": 2,
+            "nombre": "",
+            "email": "",
+            "clave": ""
+        }
+    ]
+}

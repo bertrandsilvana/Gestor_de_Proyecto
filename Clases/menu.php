@@ -1,7 +1,7 @@
 <?php
-require_once './gestor/GestorUsuario.php';
-require_once './gestor/GestorProyecto.php';
-require_once './gestor/GestorTarea.php';
+require_once './gestores/GestorUsuario.php';
+require_once './gestores/GestorProyecto.php';
+require_once './gestores/GestorTarea.php';
 
 class Menu {
     protected $gestorUsuario;
