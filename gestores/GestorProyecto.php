@@ -1,7 +1,7 @@
 <?php
 require_once './clases/proyecto.php';
 require_once './clases/tarea.php';  
-require_once './gestor/GestorTarea.php';
+require_once './gestores/GestorTarea.php';
 
 
 
