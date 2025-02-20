@@ -125,11 +125,11 @@ class Menu {
                     $this->subMenuListarProyectos();
                     break;
                 case '3':
-                    $this->SubMenuEditarProyectos(); // Redirige al submenú de editar
+                    $this->SubMenuEditarProyectos(); 
                     break;
                 case '4':
                     echo "Ingrese el ID del proyecto a eliminar: ";
-                     $id_proyecto = trim(fgets(STDIN));  // Capturamos el ID ingresado por el usuario
+                     $id_proyecto = trim(fgets(STDIN)); 
                     if ( $id_proyecto) {
                         $this->gestorProyecto-> eliminarProyecto( $id_proyecto);
                     } else {
@@ -137,15 +137,15 @@ class Menu {
                     }
                     break;
                 case '5':
-                   // Llamamos al método crearTarea sin pasar el gestorProyecto
+                  
                     $this->gestorTarea->crearTarea($this->gestorProyecto);
                     break;
                 case '6':
-                     // Listar tareas usando GestorProyecto
+                    
                      echo "Ingrese el ID del proyecto: ";
                      $id_proyecto = trim(fgets(STDIN));
                      if ($id_proyecto) {
-                         $this->gestorProyecto->listarTareasPorProyecto($id_proyecto); // Ahora se hace desde GestorProyecto
+                         $this->gestorProyecto->listarTareasPorProyecto($id_proyecto);
                      } else {
                          echo "ID de proyecto no válido.\n";
                      }
@@ -163,7 +163,7 @@ class Menu {
                         break;     
                 case '8':
                     echo "Ingrese el ID de la tarea a editar: ";
-                    $id_tarea = trim(fgets(STDIN));  // Pedimos el ID de la tarea
+                    $id_tarea = trim(fgets(STDIN));  
                     $this->gestorTarea->editarTarea($id_tarea);  
                     break;
                 case '9':
@@ -233,25 +233,17 @@ class Menu {
 
 public function SubMenuEditarProyectos() {
    
-    $gestorTarea = new GestorTarea($this->gestorProyecto);  
-
+    $gestorTarea = new GestorTarea($this->gestorProyecto); 
     echo "Ingrese el ID del proyecto a editar: ";
     $id_proyecto = trim(fgets(STDIN));
-
-   
     $this->gestorProyecto->editarProyecto($id_proyecto);
-    
     return;
-}
-
-
+    }
 
 }      
     
 
-
-// Crear primero el gestor de proyectos
-$gestorTarea = new GestorTarea(null);  // Inicialización temporal
+$gestorTarea = new GestorTarea(null); 
 $gestorProyecto = new GestorProyecto($gestorTarea);  
 
 

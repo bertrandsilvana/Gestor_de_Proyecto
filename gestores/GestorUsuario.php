@@ -23,12 +23,12 @@ class GestorUsuario{
                
                 if ($usuario->getNombre() == $nombreUsuarioIngresado && $usuario->getClave() == $claveUsuarioIngresada) {
                     echo "Usuario Válido \n";;
-                    return true; // encontró usuario válido
+                    return true; 
                 }
             }
             
             echo "Nombre o clave incorrecta.\n";
-            return false; // no encontró usuario válido
+            return false; 
         }
 
  
@@ -44,14 +44,8 @@ class GestorUsuario{
 
         echo "Ingrese clave: ";
         $clave = trim(fgets(STDIN));
-
-      
-        // Crear un nuevo usuario
         $nuevoUsuario = new usuario($id_usuario, $nombre, $email, $clave);
-
-        // Almacenar el nuevo usuario en el array
         $this->usuarios[] = $nuevoUsuario;
-
         echo "Usuario creado exitosamente: " . $nuevoUsuario->getNombre() . " con ID" .  $nuevoUsuario->getId_usuario() . "\n";
         
         $this->guardarEnJSON();
@@ -76,8 +70,7 @@ class GestorUsuario{
         $nombre = trim(fgets(STDIN));
     
         echo "Ingrese la clave del usuario que desea editar: ";
-        $clave = trim(fgets(STDIN));
-        
+        $clave = trim(fgets(STDIN)); 
         $usuarioEncontrado = false; 
     
         foreach ($this->usuarios as $usuario) {
@@ -107,9 +100,6 @@ class GestorUsuario{
         }
     }
     
-
-
-    
     public function eliminarUsuario() {
         echo "Ingrese el nombre del usuario que desea eliminar: ";
         $nombreIngresado = trim(fgets(STDIN));
@@ -117,7 +107,6 @@ class GestorUsuario{
         echo "Ingrese la clave del usuario que desea eliminar: ";
         $claveIngresada = trim(fgets(STDIN));
     
-        // Buscar el índice del usuario por nombre y clave
         $indiceUsuarios = null;
         foreach ($this->usuarios as $key => $usuario) {
             if ($usuario->getNombre() === $nombreIngresado && $usuario->getClave() === $claveIngresada) {
@@ -131,9 +120,8 @@ class GestorUsuario{
             return;
         }
     
-        // Eliminar el usuario del array
         unset($this->usuarios[$indiceUsuarios]);
-        $this->usuarios = array_values($this->usuarios); // Reindexar el array
+        $this->usuarios = array_values($this->usuarios); 
     
         echo "Usuario eliminado exitosamente.\n";
         $this->guardarEnJSON();
@@ -169,8 +157,4 @@ class GestorUsuario{
         }   
 
     }
-
-    
-
-
 }

@@ -7,18 +7,14 @@ class Tarea {
     private $fecha_inicio;
     private $fecha_fin;
     private $id_proyecto;
-    private $dependencias;  //  (array de IDs de tareas)
+    private $dependencias;  
 
     public function __construct($id_tarea, $nombre, $descripcion, $fecha_inicio, $fecha_fin, $id_proyecto, $dependencias = []) {
         $this->id_tarea = $id_tarea;
         $this->nombre = $nombre;
         $this->descripcion = $descripcion;
-        // Comprobamos si $fecha_inicio es ya un objeto DateTime
         $this->fecha_inicio = $fecha_inicio instanceof DateTime ? $fecha_inicio : new DateTime($fecha_inicio);
-        
-        // Comprobamos si $fecha_fin es ya un objeto DateTime
         $this->fecha_fin = $fecha_fin instanceof DateTime ? $fecha_fin : new DateTime($fecha_fin);
-        
         $this->id_proyecto = $id_proyecto;
         $this->dependencias = $dependencias;
     }
@@ -51,16 +47,14 @@ class Tarea {
     public function getDependencias() {
         return $this->dependencias;
     }
-     // duración de la tarea en días
+    
      public function getDuracion() {
-        // Calculamos la diferencia entre la fecha de inicio y fin de la tarea
         $intervalo = $this->fecha_inicio->diff($this->fecha_fin);
         return $intervalo->days;
     }
 
   
     public function setFechaInicio($fecha_inicio) {
-        // Solo asignamos la fecha si no es un objeto DateTime ya
         if (!$fecha_inicio instanceof DateTime) {
             $this->fecha_inicio = new DateTime($fecha_inicio);
         } else {
@@ -69,7 +63,6 @@ class Tarea {
     }
     
     public function setFechaFin($fecha_fin) {
-        // Solo asignamos la fecha si no es un objeto DateTime ya
         if (!$fecha_fin instanceof DateTime) {
             $this->fecha_fin = new DateTime($fecha_fin);
         } else {
@@ -89,8 +82,6 @@ class Tarea {
     public function agregarDependencia($id_tarea) {
         $this->dependencias[] = $id_tarea;
     }
-
-    // convertimos el objeto en un array
     public function toArray() {
         return [
             'id_tarea' => $this->id_tarea,
@@ -114,7 +105,6 @@ class Tarea {
         $idProyecto = isset($array['id_proyecto']) ? (int) $array['id_proyecto'] : null;
         $dependencias = isset($array['dependencias']) ? $array['dependencias'] : [];
     
-        // Validación para que todos los campos requeridos estén presentes
         if (empty($idTarea)) {
             throw new InvalidArgumentException("Falta el 'id_tarea' en los datos.");
         }
@@ -129,23 +119,17 @@ class Tarea {
         }
         if (empty($idProyecto)) {
             throw new InvalidArgumentException("Falta 'id_proyecto' en los datos.");
-        }
-    
-        // Convertir 'id_tarea' a entero, para asegurarnos de que se procesa correctamente
+        }      
         if (!is_int($idTarea)) {
             $idTarea = (int) $idTarea;
-        }
-    
-        // Asegurarse de que las fechas sean cadenas y convertirlas a objetos DateTime si es necesario
+        }  
         if (!empty($fechaInicio) && !$fechaInicio instanceof DateTime) {
-            $fechaInicio = new DateTime($fechaInicio); // Convertir la cadena a DateTime
+            $fechaInicio = new DateTime($fechaInicio); 
         }
-    
         if (!empty($fechaFin) && !$fechaFin instanceof DateTime) {
-            $fechaFin = new DateTime($fechaFin); // Convertir la cadena a DateTime
+            $fechaFin = new DateTime($fechaFin); 
         }
     
-        // Ahora crear la tarea con los datos validados
         return new self($idTarea, $nombre, $descripcion, $fechaInicio, $fechaFin, $idProyecto, $dependencias);
     }
     
