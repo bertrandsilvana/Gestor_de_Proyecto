@@ -42,6 +42,17 @@
             "tareas": [
                 14
             ]
+        },
+        {
+            "id_proyecto": 5,
+            "nombre": "a",
+            "descripcion": "a",
+            "fechaInicio": "2025-03-20",
+            "fechaFin": "2025-04-20",
+            "estado": "activo",
+            "tareas": [
+                15
+            ]
         }
     ]
 }
