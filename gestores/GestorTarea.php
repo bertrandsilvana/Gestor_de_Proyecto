@@ -423,6 +423,7 @@ public function crearTarea($gestorProyecto) {
                 }
             
                 file_put_contents($this->archivoJsonTareas, json_encode(['tareas' => $tareasData], JSON_PRETTY_PRINT));
+                
             }
 
             public function calcularCaminoCritico($id_proyecto) {
