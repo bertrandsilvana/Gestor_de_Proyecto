@@ -109,7 +109,7 @@
                 }
             
                 //-------------------------------------------------------------------------------------
-                
+            
                 if (count($dependencias) > 0) {
                     
                     $fechaInicio = $this->obtenerFechaDeFinDeUltimaDependencia($dependencias, $gestorProyecto);
@@ -147,7 +147,7 @@
                 
                     } while ($fechaInicio < $fechaInicioProyecto || $fechaInicio > $fechaFinProyecto);
                 }
-                
+            
                 //-------------------------------------------------------------------------------------
             
             
@@ -158,10 +158,12 @@
                 $descripcion = trim(fgets(STDIN));
             
                 
+                
                 do {
                     echo "Ingrese la duración de la tarea en días: ";
                     $duracion = trim(fgets(STDIN));
             
+                    
                     
                     if (!is_numeric($duracion) || $duracion <= 0) {
                         echo "La duración debe ser un número positivo.\n";
@@ -205,16 +207,14 @@
         
            
                     $fechaFinDependiente = $tareaDependiente->getFechaFin();
-                    
-                    // Si es la primera dependencia o la fecha de fin es posterior a la anterior, actualizamos
+            
                     if ($ultimaFechaFin === null || $fechaFinDependiente > $ultimaFechaFin) {
                         $ultimaFechaFin = $fechaFinDependiente;
                     }
                 }
         
-                // La fecha de inicio de la nueva tarea será al día siguiente de la última tarea dependiente
                 $fechaInicio = clone $ultimaFechaFin;
-                $fechaInicio->modify('+1 day');  // Para que la nueva tarea inicie al día siguiente
+                $fechaInicio->modify('+1 day');  
         
                 echo "La fecha de inicio de la nueva tarea será: " . $fechaInicio->format('Y-m-d') . "\n";
                 
@@ -240,6 +240,7 @@
                 echo "1. Nombre\n";
                 echo "2. Descripción\n";
                 echo "3. Duración en días\n";  
+                echo "3. Duración en días\n";  
                 echo "4. Dependencias\n";
                 echo "0. Volver\n";
             
@@ -259,11 +260,12 @@
                         break;
             
                     case '3':  
+                    case '3':  
                         echo "Ingrese la nueva duración de la tarea en días: ";
                         $duracion = trim(fgets(STDIN));
             
-                        // Calcular la nueva fecha de fin basada en la nueva duración
-                        $fecha_fin = clone $tarea->getFechaInicio();  // Clonamos la fecha de inicio para no modificarla directamente
+                       
+                        $fecha_fin = clone $tarea->getFechaInicio();  
                         $fecha_fin->modify("+$duracion days");
                         $tarea->setFechaFin($fecha_fin);
             
