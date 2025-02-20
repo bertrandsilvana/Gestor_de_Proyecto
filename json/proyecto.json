@@ -14,12 +14,16 @@
         },
         {
             "id_proyecto": 2,
-            "nombre": "confeccion",
+            "nombre": "confeccion2",
             "descripcion": "se confeccionan prendas",
             "fechaInicio": "2025-03-18",
             "fechaFin": "2025-09-19",
             "estado": "activo",
-            "tareas": []
+            "tareas": [
+                3,
+                4,
+                5
+            ]
         }
     ]
 }

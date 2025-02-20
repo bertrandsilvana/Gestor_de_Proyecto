@@ -3,7 +3,7 @@
         class GestorTarea {
             private $tareas = [];
             private $archivoJsonTareas = './Json/tareas.json';
-            private $gestorProyecto;  // Para acceder al gestor de proyectos
+            private $gestorProyecto;  
         
              public function __construct($gestorProyecto) {
                 $this->gestorProyecto = $gestorProyecto;
@@ -14,7 +14,7 @@
                 $this->gestorProyecto = $gestorProyecto;
             }
         
-       // Cargar tareas desde el archivo JSON
+
       
              public function cargarTareaDesdeJson() {
                 if (file_exists($this->archivoJsonTareas)) {
@@ -26,29 +26,28 @@
                         }
                     }
                 }
-                return $this->tareas; // Asegúrate de devolver las tareas cargadas
+                return $this->tareas; 
             }
 
-                // Método para buscar tarea por ID
             public function buscarTareaPorId($id_tarea) {
                     foreach ($this->tareas as $tarea) {
                         if ($tarea->getIdTarea() == $id_tarea) {
                             return $tarea;
                         }
                     }
-                    return null; // Si no se encuentra la tarea
+                    return null; // Si no  encuentra la tarea
                 }
 
 
-     // Método en la clase GestorTarea para obtener un nuevo ID único
+    
             public function obtenerNuevoIdTarea() {
-                // Cargar las tareas existentes desde el archivo JSON
-                $tareasExistentes = $this->cargarTareaDesdeJson();  // Asegúrate de que este método devuelva las tareas
+               
+                $tareasExistentes = $this->cargarTareaDesdeJson(); 
             
-                // Buscar el ID más alto entre las tareas
+                // Busca el ID más alto entre las tareas
                 $maxId = 0;
                 foreach ($tareasExistentes as $tareaData) {
-                    $idTarea = $tareaData->getIdTarea();  // Accede a la propiedad del objeto correctamente
+                    $idTarea = $tareaData->getIdTarea();  
                     if ($idTarea > $maxId) {
                         $maxId = $idTarea;
                     }
@@ -60,7 +59,6 @@
             public function guardarTareaEnJson($tarea) {
                 $tareasData = [];
             
-                // Cargar tareas actuales desde el archivo JSON
                 if (file_exists($this->archivoJsonTareas)) {
                     $contenidoJson = file_get_contents($this->archivoJsonTareas);
                     $data = json_decode($contenidoJson, true);
@@ -76,13 +74,12 @@
                     }
                 }
             
-                // Si la tarea no se encontraba previamente, añadirla
+                // Si la tarea no se encontraba previamente, se agrega
                 $idsExistentes = array_column($tareasData, 'id_tarea');
                 if (!in_array($tarea->getIdTarea(), $idsExistentes)) {
                     $tareasData[] = $tarea->toArray();
                 }
             
-                // Guardar el array de tareas actualizado en tareas.json
                 file_put_contents($this->archivoJsonTareas, json_encode(['tareas' => $tareasData], JSON_PRETTY_PRINT));
             }
 
@@ -90,18 +87,17 @@
           
               public function crearTarea($gestorProyecto) {
 
-                // Solicitar ID del proyecto
+                
                 echo "Ingrese el ID del proyecto al que pertenece la tarea: ";
                 $id_proyecto = trim(fgets(STDIN));
             
-                // Verificar si el proyecto existe usando el método buscarProyectoPorId
+              
                 $proyecto = $gestorProyecto->buscarProyectoPorId($id_proyecto);
                 if ($proyecto === null) {
                     echo "El proyecto con ID $id_proyecto no existe. Por favor, ingrese un ID válido.\n";
-                    return;  // Salir de la función si el proyecto no existe
+                    return;  
                 }
             
-                // Preguntar si la tarea tiene dependencias
                 echo "¿La tarea tiene dependencias? (sí/no): ";
                 $respuesta = trim(fgets(STDIN));
             
@@ -109,18 +105,18 @@
                 if (strtolower($respuesta) == "sí" || strtolower($respuesta) == "si") {
                     echo "Ingrese los IDs de las tareas de las cuales depende (separados por comas): ";
                     $dependencias = explode(",", trim(fgets(STDIN)));  // Convertimos a array y eliminamos espacios en blanco
-                    $dependencias = array_map('trim', $dependencias); // Asegurarse de que no haya espacios en blanco
+                    $dependencias = array_map('trim', $dependencias); 
                 }
             
                 //-------------------------------------------------------------------------------------
                 
                 if (count($dependencias) > 0) {
-                    // Usar tu método para obtener la fecha de fin de la última dependencia
+                    
                     $fechaInicio = $this->obtenerFechaDeFinDeUltimaDependencia($dependencias, $gestorProyecto);
                 } else {
-                    // Obtener las fechas de inicio y fin del proyecto una vez fuera del ciclo
-                    $fechaInicioProyecto = $proyecto->getFechaInicio();  // Obtener fecha de inicio del proyecto
-                    $fechaFinProyecto = $proyecto->getFechaFin();  // Obtener fecha de fin del proyecto
+                   
+                    $fechaInicioProyecto = $proyecto->getFechaInicio(); 
+                    $fechaFinProyecto = $proyecto->getFechaFin();  
                     
                     // Verificar que las fechas sean válidas
                     if (!$fechaInicioProyecto instanceof DateTime || !$fechaFinProyecto instanceof DateTime) {
@@ -128,7 +124,7 @@
                         return;
                     }
                 
-                    // Si no tiene dependencias, seguir el flujo normal de fecha de inicio
+                  
                     do {
                         echo "Ingrese la fecha de inicio de la tarea (formato: Y-m-d): ";
                         $fechaInicioInput = trim(fgets(STDIN));
@@ -154,38 +150,38 @@
                 
                 //-------------------------------------------------------------------------------------
             
-                // Solicitar el nombre y la descripción de la tarea
+            
                 echo "Ingrese el nombre de la tarea: ";
                 $nombre = trim(fgets(STDIN));
             
                 echo "Ingrese la descripción de la tarea: ";
                 $descripcion = trim(fgets(STDIN));
             
-                // Pedir duración de la tarea en días y calcular la fecha de fin
+                
                 do {
                     echo "Ingrese la duración de la tarea en días: ";
                     $duracion = trim(fgets(STDIN));
             
-                    // Validar que la duración sea un número entero positivo
+                    
                     if (!is_numeric($duracion) || $duracion <= 0) {
                         echo "La duración debe ser un número positivo.\n";
                     }
                 } while (!is_numeric($duracion) || $duracion <= 0);
             
-                // Calcular la fecha de fin sumando la duración en días a la fecha de inicio
+                
                 $fechaFin = clone $fechaInicio;  // Crear una copia de la fecha de inicio
                 $fechaFin->modify("+$duracion days");
             
                 echo "La fecha de fin calculada para la tarea es: " . $fechaFin->format('Y-m-d') . "\n";
             
-                // Crear la nueva tarea
+               
                 $idTarea = $this->obtenerNuevoIdTarea();  // Método para obtener el próximo ID disponible
                 $nuevaTarea = new Tarea($idTarea, $nombre, $descripcion, $fechaInicio, $fechaFin, $id_proyecto, $dependencias);
             
-                // Guardar la tarea en tareas.json
+             
                 $this->guardarTareaEnJson($nuevaTarea);
             
-                // Añadir la tarea al campo "tareas" del proyecto correspondiente
+              
                 $gestorProyecto->agregarTareaAlProyecto($id_proyecto, $nuevaTarea);
             
                 echo "Tarea creada exitosamente: " . $nuevaTarea->getNombre() . " con ID " . $nuevaTarea->getIdTarea() . "\n";
@@ -194,20 +190,20 @@
             
            
             
-              // Aquí va la nueva función obtenerFechaDeFinDeUltimaDependencia
+          
              public function obtenerFechaDeFinDeUltimaDependencia($dependencias, $gestorProyecto) {
-                // Obtener la fecha de fin de la última tarea dependiente
+                
                 $ultimaFechaFin = null;
         
                 foreach ($dependencias as $idDependencia) {
-                    // Buscar tarea en el gestor de tareas
+                    // Busca tarea en el gestor de tareas
                     $tareaDependiente = $this->buscarTareaPorId($idDependencia);
                     if ($tareaDependiente === null) {
                         echo "La tarea con ID $idDependencia no existe. Verifique las dependencias.\n";
-                        return null;  // Si una tarea dependiente no existe
+                        return null;  // Si la tarea dependiente no existe
                     }
         
-                    // Obtener la fecha de fin de la tarea dependiente
+           
                     $fechaFinDependiente = $tareaDependiente->getFechaFin();
                     
                     // Si es la primera dependencia o la fecha de fin es posterior a la anterior, actualizamos
@@ -243,7 +239,7 @@
                 echo "¿Qué campo deseas editar?\n";
                 echo "1. Nombre\n";
                 echo "2. Descripción\n";
-                echo "3. Duración en días\n";  // Cambiado a "Duración en días"
+                echo "3. Duración en días\n";  
                 echo "4. Dependencias\n";
                 echo "0. Volver\n";
             
@@ -262,7 +258,7 @@
                         $tarea->setDescripcion($descripcion);
                         break;
             
-                    case '3':  // Cambiado a duración en días
+                    case '3':  
                         echo "Ingrese la nueva duración de la tarea en días: ";
                         $duracion = trim(fgets(STDIN));
             
@@ -274,8 +270,8 @@
                         // Verificar si las tareas siguientes se ven afectadas
                         $this->verificarYActualizarTareasSiguientes($tarea, $duracion);
             
-                        // Verificar si el cambio afecta el camino crítico y la fecha de fin del proyecto
-                        // Llamamos al método de la clase GestorTarea
+                        // Verificamos si el cambio afecta el camino crítico y la fecha de fin del proyecto
+                        
                         $this->calcularCaminoCritico($tarea->getIdProyecto());
                         break;
             
@@ -296,7 +292,7 @@
                 // Verificar si la fecha de fin del proyecto se ve afectada por la tarea
                 $this->actualizarFechaFinProyecto($tarea->getIdProyecto());
             
-                // Guardar la tarea actualizada en tareas.json
+               
                 $this->guardarTareaEnJson($tarea);
                 echo "Tarea actualizada.\n";
             }
@@ -310,7 +306,7 @@
                     // Verificar si la tarea siguiente depende de la tarea modificada
                     if (in_array($tarea->getIdTarea(), $tareaSiguiente->getDependencias())) {
                         // Recalcular la fecha de inicio de la tarea siguiente
-                        $fecha_inicio_siguiente = clone $tarea->getFechaFin();  // La fecha de inicio de la siguiente tarea es la fecha de fin de la tarea anterior
+                        $fecha_inicio_siguiente = clone $tarea->getFechaFin();  
                         $tareaSiguiente->setFechaInicio($fecha_inicio_siguiente);
                         
                         // Calcular la nueva fecha de fin para la tarea siguiente
@@ -353,29 +349,29 @@
                 // Variable que indica si el camino crítico ha cambiado
                 $camino_critico_afectado = false;
             
-                // Usar getTareasPorProyecto() en lugar de obtenerTareasDelProyecto()
+            
                 foreach ($this->getTareasPorProyecto($tarea->getIdProyecto()) as $tarea_comparada) {
                     if ($tarea_comparada->getFechaFin() > $tarea->getFechaInicio()) {
                         echo "La fecha de una tarea ha afectado el camino crítico.\n";
                         $camino_critico_afectado = true;
-                        break; // Salir del ciclo, ya que encontramos una tarea que afecta el camino crítico
+                        break;
                     }
                 }
             
                 // Si alguna tarea afectó el camino crítico, se procede a actualizar el camino
                 if ($camino_critico_afectado) {
-                    // Actualizar el camino crítico
+                
                     $this->calcularCaminoCritico($id_proyecto);
                 }
             }
             
             
-            // En el método que se encarga de actualizar la fecha de finalización del proyecto
+            
              public function actualizarFechaFinProyecto($id_proyecto) {
-                    // Obtener todas las tareas del proyecto
+                    
                     $tareasDelProyecto = $this->getTareasPorProyecto($id_proyecto);
                     
-                    // Ordenar las tareas por la fecha de fin (de la más tarde a la más temprana)
+                    // Ordenamos las tareas por la fecha de fin (de la más tarde a la más temprana)
                     usort($tareasDelProyecto, function($a, $b) {
                         return $a->getFechaFin() <=> $b->getFechaFin();
                     });
@@ -390,13 +386,11 @@
                         echo "Fecha de finalización del proyecto actualizada: " . $nuevaFechaFinProyecto->format('Y-m-d') . "\n";
                     }
                     
-                    // Ahora actualiza también la fecha de finalización del proyecto en su base de datos o archivo
-                    // Código adicional para guardar la nueva fecha final en tu base de datos o archivo JSON
+                    
                 }   
 
                             
         
-            // Eliminar una tarea
             public function eliminarTarea($id_tarea) {
                 $tareaEliminada = null;
                 
@@ -404,7 +398,7 @@
                     if ($tarea->getIdTarea() == $id_tarea) {
                         $tareaEliminada = $tarea;
                         unset($this->tareas[$key]);
-                        // Reindexar el array después de eliminar la tarea
+                        // Reindexa
                          $this->tareas = array_values($this->tareas);
                         $this->guardarTodasLasTareasEnJson();
                         echo "Tarea eliminada con éxito.\n";
@@ -413,7 +407,7 @@
                 }
             
                 if ($tareaEliminada) {
-                    // También actualizar el proyecto correspondiente en proyecto.json
+                    // También actualiza el proyecto correspondiente en proyecto.json
                     $this->gestorProyecto->eliminarTareaDeProyecto($tareaEliminada->getIdProyecto(), $id_tarea);
                 } else {
                     echo "Tarea con ID {$id_tarea} no encontrada.\n";
@@ -421,7 +415,7 @@
             }
             
 
-            // metodo separado para actualizar cuando elimino una tarea 
+       
             public function guardarTodasLasTareasEnJson() {
                 $tareasData = [];
             
@@ -498,14 +492,14 @@
                             $tareasOrdenadas[] = $tarea;
                             unset($tareasPendientes[$key]);  // Eliminar de las tareas pendientes
                             $tareasProcesadasEnEstaIteracion = true;
-                            echo "Tarea " . $tarea->getNombre() . " agregada al orden\n";  // Mensaje de depuración
+                            echo "Tarea " . $tarea->getNombre() . " agregada al orden\n";  
                         }
                     }
             
                     // Si no se procesó ninguna tarea en esta iteración, significa que hay un ciclo o tareas sin dependencias resueltas
                     if (!$tareasProcesadasEnEstaIteracion) {
                         echo "Cuidado: hay dependencias no resueltas, posible ciclo en las tareas.\n";
-                        break;  // Detenemos el ciclo para evitar un bucle infinito
+                        break;  
                     }
                 }
             
