@@ -20,6 +20,34 @@
             "fechaFin": "2025-09-19",
             "estado": "activo",
             "tareas": []
+        },
+        {
+            "id_proyecto": 3,
+            "nombre": "Contruir una casa",
+            "descripcion": "Construccion de una vivienda unifamiliar en el barrio La Loma",
+            "fechaInicio": "2025-02-20",
+            "fechaFin": "2025-07-02",
+            "estado": "activo",
+            "tareas": [
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9
+            ]
+        },
+        {
+            "id_proyecto": 4,
+            "nombre": "cumplea\u0000os",
+            "descripcion": "organizacion para un cumplea\u0000os de 60",
+            "fechaInicio": "2025-02-20",
+            "fechaFin": "2025-03-24",
+            "estado": "activo",
+            "tareas": [
+                10
+            ]
         }
     ]
 }

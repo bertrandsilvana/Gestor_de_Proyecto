@@ -88,8 +88,7 @@
 
        
           
-              public function crearTarea($gestorProyecto) {
-
+            public function crearTarea($gestorProyecto) {
                 // Solicitar ID del proyecto
                 echo "Ingrese el ID del proyecto al que pertenece la tarea: ";
                 $id_proyecto = trim(fgets(STDIN));
@@ -113,7 +112,7 @@
                 }
             
                 //-------------------------------------------------------------------------------------
-                
+            
                 if (count($dependencias) > 0) {
                     // Usar tu método para obtener la fecha de fin de la última dependencia
                     $fechaInicio = $this->obtenerFechaDeFinDeUltimaDependencia($dependencias, $gestorProyecto);
@@ -151,38 +150,45 @@
                 
                     } while ($fechaInicio < $fechaInicioProyecto || $fechaInicio > $fechaFinProyecto);
                 }
-                
+            
                 //-------------------------------------------------------------------------------------
             
-                // Solicitar el nombre y la descripción de la tarea
+               
                 echo "Ingrese el nombre de la tarea: ";
                 $nombre = trim(fgets(STDIN));
             
                 echo "Ingrese la descripción de la tarea: ";
                 $descripcion = trim(fgets(STDIN));
             
-                // Pedir duración de la tarea en días y calcular la fecha de fin
+                
                 do {
                     echo "Ingrese la duración de la tarea en días: ";
                     $duracion = trim(fgets(STDIN));
             
-                    // Validar que la duración sea un número entero positivo
+                    
                     if (!is_numeric($duracion) || $duracion <= 0) {
                         echo "La duración debe ser un número positivo.\n";
                     }
                 } while (!is_numeric($duracion) || $duracion <= 0);
             
-                // Calcular la fecha de fin sumando la duración en días a la fecha de inicio
-                $fechaFin = clone $fechaInicio;  // Crear una copia de la fecha de inicio
+               
+                $fechaFin = clone $fechaInicio; 
                 $fechaFin->modify("+$duracion days");
             
                 echo "La fecha de fin calculada para la tarea es: " . $fechaFin->format('Y-m-d') . "\n";
             
-                // Crear la nueva tarea
-                $idTarea = $this->obtenerNuevoIdTarea();  // Método para obtener el próximo ID disponible
+                
+                $idTarea = $this->obtenerNuevoIdTarea();  
                 $nuevaTarea = new Tarea($idTarea, $nombre, $descripcion, $fechaInicio, $fechaFin, $id_proyecto, $dependencias);
             
-                // Guardar la tarea en tareas.json
+               
+                $fechaFinProyecto = $proyecto->getFechaFin();  
+                if ($fechaFin > $fechaFinProyecto) {
+                    echo "La fecha de fin de la tarea excede la fecha de fin del proyecto. Actualizando la fecha actualizada del proyecto es  " . $fechaFin->format('Y-m-d') . "\n";
+                    $proyecto->setFechaFin($fechaFin); 
+                }
+            
+                
                 $this->guardarTareaEnJson($nuevaTarea);
             
                 // Añadir la tarea al campo "tareas" del proyecto correspondiente
@@ -190,35 +196,29 @@
             
                 echo "Tarea creada exitosamente: " . $nuevaTarea->getNombre() . " con ID " . $nuevaTarea->getIdTarea() . "\n";
             }
-
             
-           
-            
-              // Aquí va la nueva función obtenerFechaDeFinDeUltimaDependencia
+//------------------------------------------------------------------------------------
              public function obtenerFechaDeFinDeUltimaDependencia($dependencias, $gestorProyecto) {
-                // Obtener la fecha de fin de la última tarea dependiente
+
                 $ultimaFechaFin = null;
         
                 foreach ($dependencias as $idDependencia) {
-                    // Buscar tarea en el gestor de tareas
+            
                     $tareaDependiente = $this->buscarTareaPorId($idDependencia);
                     if ($tareaDependiente === null) {
                         echo "La tarea con ID $idDependencia no existe. Verifique las dependencias.\n";
-                        return null;  // Si una tarea dependiente no existe
+                        return null;  
                     }
         
-                    // Obtener la fecha de fin de la tarea dependiente
                     $fechaFinDependiente = $tareaDependiente->getFechaFin();
-                    
-                    // Si es la primera dependencia o la fecha de fin es posterior a la anterior, actualizamos
+            
                     if ($ultimaFechaFin === null || $fechaFinDependiente > $ultimaFechaFin) {
                         $ultimaFechaFin = $fechaFinDependiente;
                     }
                 }
         
-                // La fecha de inicio de la nueva tarea será al día siguiente de la última tarea dependiente
                 $fechaInicio = clone $ultimaFechaFin;
-                $fechaInicio->modify('+1 day');  // Para que la nueva tarea inicie al día siguiente
+                $fechaInicio->modify('+1 day');  
         
                 echo "La fecha de inicio de la nueva tarea será: " . $fechaInicio->format('Y-m-d') . "\n";
                 
@@ -243,7 +243,7 @@
                 echo "¿Qué campo deseas editar?\n";
                 echo "1. Nombre\n";
                 echo "2. Descripción\n";
-                echo "3. Duración en días\n";  // Cambiado a "Duración en días"
+                echo "3. Duración en días\n";  
                 echo "4. Dependencias\n";
                 echo "0. Volver\n";
             
@@ -262,12 +262,12 @@
                         $tarea->setDescripcion($descripcion);
                         break;
             
-                    case '3':  // Cambiado a duración en días
+                    case '3':  
                         echo "Ingrese la nueva duración de la tarea en días: ";
                         $duracion = trim(fgets(STDIN));
             
-                        // Calcular la nueva fecha de fin basada en la nueva duración
-                        $fecha_fin = clone $tarea->getFechaInicio();  // Clonamos la fecha de inicio para no modificarla directamente
+                       
+                        $fecha_fin = clone $tarea->getFechaInicio();  
                         $fecha_fin->modify("+$duracion days");
                         $tarea->setFechaFin($fecha_fin);
             
