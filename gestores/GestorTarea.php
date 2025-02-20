@@ -463,10 +463,24 @@
             
                 // Calcular el camino crítico dentro de la misma función
                 echo "=== Camino Crítico ===\n";
+                $ultimaFechaFin = null; // Variable para almacenar la última fecha de fin
+            
                 foreach ($ordenTareas as $tarea) {
                     echo "Tarea: " . $tarea->getNombre() . ", Fecha Inicio: " . $tarea->getFechaInicio()->format('Y-m-d') . ", Fecha Fin: " . $tarea->getFechaFin()->format('Y-m-d') . "\n";
+                    
+                    // Actualizar la última fecha de fin
+                    if ($ultimaFechaFin === null || $tarea->getFechaFin() > $ultimaFechaFin) {
+                        $ultimaFechaFin = $tarea->getFechaFin();
+                    }
+                }
+            
+                // Mostrar la fecha de fin del proyecto (última fecha de fin)
+                if ($ultimaFechaFin !== null) {
+                    echo "=== Fecha de Finalización del Proyecto ===\n";
+                    echo "La fecha estimada de finalización del proyecto es: " . $ultimaFechaFin->format('Y-m-d') . "\n";
                 }
             }
+            
             
             // Método para ordenar las tareas considerando sus dependencias
             public function ordenarTareasPorDependencias($tareas) {
@@ -508,9 +522,6 @@
                 return $tareasOrdenadas;
             }
             
-            
-           
-      
             
             
                 public function getTareasPorProyecto($id_proyecto) {
