@@ -19,6 +19,17 @@
             "tareas": [
                 11
             ]
+        },
+        {
+            "id_proyecto": 3,
+            "nombre": "Nuevo proyecto",
+            "descripcion": "a",
+            "fechaInicio": "2025-02-12",
+            "fechaFin": "2025-05-12",
+            "estado": "activo",
+            "tareas": [
+                12
+            ]
         }
     ]
 }
