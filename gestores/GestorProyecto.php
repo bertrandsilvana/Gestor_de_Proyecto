@@ -359,11 +359,6 @@ class GestorProyecto {
         echo "Tareas asociadas al proyecto eliminadas correctamente.\n";
     }
     
-    
-    
-    
-    
-    
 
     public function cargarDesdeJson() {
         // Cargar proyectos desde el archivo JSON

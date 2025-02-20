@@ -7,7 +7,7 @@ class Tarea {
     private $fecha_inicio;
     private $fecha_fin;
     private $id_proyecto;
-    private $dependencias;  // Dependencias de otras tareas (array de IDs de tareas)
+    private $dependencias;  //  (array de IDs de tareas)
 
     public function __construct($id_tarea, $nombre, $descripcion, $fecha_inicio, $fecha_fin, $id_proyecto, $dependencias = []) {
         $this->id_tarea = $id_tarea;
@@ -23,7 +23,7 @@ class Tarea {
         $this->dependencias = $dependencias;
     }
 
-    // Métodos getter
+   
     public function getIdTarea() {
         return $this->id_tarea;
     }
@@ -51,14 +51,14 @@ class Tarea {
     public function getDependencias() {
         return $this->dependencias;
     }
-     // Método getDuracion para calcular la duración de la tarea en días
+     // duración de la tarea en días
      public function getDuracion() {
         // Calculamos la diferencia entre la fecha de inicio y fin de la tarea
         $intervalo = $this->fecha_inicio->diff($this->fecha_fin);
         return $intervalo->days;
     }
 
-    // Métodos setter
+  
     public function setFechaInicio($fecha_inicio) {
         // Solo asignamos la fecha si no es un objeto DateTime ya
         if (!$fecha_inicio instanceof DateTime) {
@@ -90,7 +90,7 @@ class Tarea {
         $this->dependencias[] = $id_tarea;
     }
 
-    // Método toArray() - convierte el objeto en un array
+    // convertimos el objeto en un array
     public function toArray() {
         return [
             'id_tarea' => $this->id_tarea,
@@ -103,10 +103,9 @@ class Tarea {
         ];
     }
     public static function fromArray($array) {
-        // Depuración: Ver el contenido del array para comprobar qué datos están llegando
-      //  var_dump($array);  // Esto te permitirá ver qué datos están presentes
+        
     
-        // Verificar y asignar valores predeterminados si faltan claves
+        
         $idTarea = isset($array['id_tarea']) ? $array['id_tarea'] : null;
         $nombre = isset($array['nombre']) ? $array['nombre'] : '';
         $descripcion = isset($array['descripcion']) ? $array['descripcion'] : '';
@@ -115,7 +114,7 @@ class Tarea {
         $idProyecto = isset($array['id_proyecto']) ? (int) $array['id_proyecto'] : null;
         $dependencias = isset($array['dependencias']) ? $array['dependencias'] : [];
     
-        // Validar que todos los campos requeridos estén presentes
+        // Validación para que todos los campos requeridos estén presentes
         if (empty($idTarea)) {
             throw new InvalidArgumentException("Falta el 'id_tarea' en los datos.");
         }

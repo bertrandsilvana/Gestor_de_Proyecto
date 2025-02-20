@@ -2,51 +2,22 @@
     "proyecto": [
         {
             "id_proyecto": 1,
-            "nombre": "construccion1",
-            "descripcion": "construccion de una vivienda",
-            "fechaInicio": "2025-10-16",
-            "fechaFin": "2025-12-16",
-            "estado": "activo",
-            "tareas": [
-                1,
-                2
-            ]
-        },
-        {
-            "id_proyecto": 2,
-            "nombre": "confeccion",
-            "descripcion": "se confeccionan prendas",
-            "fechaInicio": "2025-03-18",
-            "fechaFin": "2025-09-19",
+            "nombre": "la",
+            "descripcion": "a",
+            "fechaInicio": "2025-02-20",
+            "fechaFin": "2025-03-20",
             "estado": "activo",
             "tareas": []
         },
         {
-            "id_proyecto": 3,
-            "nombre": "Contruir una casa",
-            "descripcion": "Construccion de una vivienda unifamiliar en el barrio La Loma",
-            "fechaInicio": "2025-02-20",
-            "fechaFin": "2025-07-02",
+            "id_proyecto": 2,
+            "nombre": "pizza",
+            "descripcion": "a",
+            "fechaInicio": "2025-02-24",
+            "fechaFin": "2025-03-25",
             "estado": "activo",
             "tareas": [
-                3,
-                4,
-                5,
-                6,
-                7,
-                8,
-                9
-            ]
-        },
-        {
-            "id_proyecto": 4,
-            "nombre": "cumplea\u0000os",
-            "descripcion": "organizacion para un cumplea\u0000os de 60",
-            "fechaInicio": "2025-02-20",
-            "fechaFin": "2025-03-24",
-            "estado": "activo",
-            "tareas": [
-                10
+                11
             ]
         }
     ]

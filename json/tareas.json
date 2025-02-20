@@ -1,105 +1,12 @@
 {
     "tareas": [
         {
-            "id_tarea": 1,
-            "nombre": "nivelado",
-            "descripcion": "se nivela el suelo",
-            "fecha_inicio": "2025-10-17",
-            "fecha_fin": "2025-11-01",
-            "id_proyecto": 1,
-            "dependencias": []
-        },
-        {
-            "id_tarea": 2,
-            "nombre": "cimientos",
-            "descripcion": "se realizan los cimientos",
-            "fecha_inicio": "2025-10-23",
-            "fecha_fin": "2025-10-28",
-            "id_proyecto": "1",
-            "dependencias": [
-                "1"
-            ]
-        },
-        {
-            "id_tarea": 3,
-            "nombre": "Comprar terreno",
-            "descripcion": "averiguar terrenos disponibles en el barrio La Loma que tengan 50 metros cuadrados",
-            "fecha_inicio": "2025-02-20",
-            "fecha_fin": "2025-02-25",
-            "id_proyecto": "3",
-            "dependencias": []
-        },
-        {
-            "id_tarea": 4,
-            "nombre": "conseguir arquitecto",
-            "descripcion": "buscar al menos 3 arquitectos con los que debatir el proyecto, costos y tiempos",
-            "fecha_inicio": "2025-02-26",
-            "fecha_fin": "2025-03-08",
-            "id_proyecto": "3",
-            "dependencias": [
-                "3"
-            ]
-        },
-        {
-            "id_tarea": 5,
-            "nombre": "ajja",
+            "id_tarea": 11,
+            "nombre": "aceituna",
             "descripcion": "a",
-            "fecha_inicio": "2025-03-09",
-            "fecha_fin": "2025-03-15",
-            "id_proyecto": "3",
-            "dependencias": [
-                "4"
-            ]
-        },
-        {
-            "id_tarea": 6,
-            "nombre": "e",
-            "descripcion": "e",
-            "fecha_inicio": "2025-02-21",
-            "fecha_fin": "2025-04-22",
-            "id_proyecto": 3,
-            "dependencias": []
-        },
-        {
-            "id_tarea": 7,
-            "nombre": "qe",
-            "descripcion": "q",
-            "fecha_inicio": "2025-04-23",
-            "fecha_fin": "2025-04-26",
-            "id_proyecto": "3",
-            "dependencias": [
-                "6"
-            ]
-        },
-        {
-            "id_tarea": 8,
-            "nombre": "50",
-            "descripcion": "q",
-            "fecha_inicio": "2025-04-27",
-            "fecha_fin": "2025-06-16",
-            "id_proyecto": "3",
-            "dependencias": [
-                "7"
-            ]
-        },
-        {
-            "id_tarea": 9,
-            "nombre": "depende de 6",
-            "descripcion": "a",
-            "fecha_inicio": "2025-04-23",
-            "fecha_fin": "2025-07-02",
-            "id_proyecto": "3",
-            "dependencias": [
-                "6"
-            ]
-        },
-        {
-            "id_tarea": 10,
-            "nombre": "e",
-            "descripcion": "e",
-            "fecha_inicio": "2025-03-10",
-            "fecha_fin": "2025-03-24",
-            "id_proyecto": "4",
+            "fecha_inicio": "2025-02-24",
+            "fecha_fin": "2025-03-05",
+            "id_proyecto": "2",
             "dependencias": []
         }
     ]

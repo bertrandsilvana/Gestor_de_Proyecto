@@ -1,7 +1,7 @@
 <?php
 
 
-require_once './clases/tarea.php'; // Asegúrate de incluir la clase Tarea
+require_once './clases/tarea.php'; 
 
 class Proyecto {
     private $id_proyecto;
@@ -23,10 +23,9 @@ class Proyecto {
        $this->fechaFin = $fechaFin instanceof DateTime ? $fechaFin : new DateTime($fechaFin);
        
         $this->estado = $estado;
-        $this->tareas = $tareas;  // Inicializa tareas
+        $this->tareas = $tareas;  // Inicializamos tareas
     }
 
-    // Métodos Getters
     public function getId_proyecto() {
         return $this->id_proyecto;
     }
@@ -55,7 +54,7 @@ class Proyecto {
         return $this->tareas;
     }
 
-    // Métodos Setters
+   
     public function setId_proyecto($id_proyecto) {
         $this->id_proyecto = $id_proyecto;
     }
@@ -85,7 +84,6 @@ class Proyecto {
         $this->tareas = $tareas;
     }
 
-    // Añadir una tarea
 
 
     public function agregarTarea($tarea) {
@@ -94,7 +92,7 @@ class Proyecto {
    
   
 
-    // Eliminar una tarea por ID
+ 
     public function eliminarTarea($id_tarea) {
         foreach ($this->tareas as $key => $tarea) {
             if ($tarea->getIdTarea() == $id_tarea) {
@@ -106,7 +104,7 @@ class Proyecto {
       
     }
 
-    // Convertir el objeto Proyecto a un array (para guardarlo en JSON)
+    // Convertimos el objeto Proyecto a un array para guardarlo en JSON (serialización)
     public function toArray() {
         $tareasArray = array_map(function($tarea) {
             return $tarea->toArray();  // Convierte cada tarea a un array
@@ -123,7 +121,7 @@ class Proyecto {
         ];
     }
 
-        // Crear un objeto Proyecto a partir de un array
+        // Creamos un objeto Proyecto a partir de un array
         public static function fromArray($array) {
             // Aseguramos que las fechas se convierten a DateTime solo si son cadenas
             $fechaInicio = $array['fechaInicio'] instanceof DateTime ? $array['fechaInicio'] : new DateTime($array['fechaInicio']);

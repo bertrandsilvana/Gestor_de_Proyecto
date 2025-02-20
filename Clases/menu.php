@@ -195,28 +195,28 @@ class Menu {
             try {
                 switch ($eleccion) {
                     case '1':
-                        echo "Listando proyectos por ID...\n"; // Depuración
+                        echo "Listando proyectos por ID...\n"; 
                         $this->gestorProyecto->listarProyectosPorId();
                         break;
                     case '2':
-                        echo "Listando proyectos por Nombre...\n"; // Depuración
+                        echo "Listando proyectos por Nombre...\n"; 
                         $this->gestorProyecto->listarProyectosPorNombre();
                         break;
                     case '3':
-                        echo "Listando proyectos por Fecha de Inicio...\n"; // Depuración
+                        echo "Listando proyectos por Fecha de Inicio...\n"; 
                         $this->gestorProyecto->listarProyectosPorFechaInicio();
                         break;
                     case '4':
-                        echo "Listando proyectos por Fecha de Fin...\n"; // Depuración
+                        echo "Listando proyectos por Fecha de Fin...\n"; 
                         $this->gestorProyecto->listarProyectosPorFechaFin();
                         break;
                     case '5':
-                        echo "Listando proyectos por Estado...\n"; // Depuración
+                        echo "Listando proyectos por Estado...\n"; 
                         $this->gestorProyecto->listarProyectosPorEstado();
                         break;
                     case '0':
-                        // Volver al Menú de Proyecto
-                        echo "Volviendo al Menú de Proyecto...\n"; // Depuración
+                        
+                        echo "Volviendo al Menú de Proyecto...\n"; 
                         return;
                     default:
                         echo "Opción no válida. Inténtelo de nuevo.\n";
@@ -230,15 +230,15 @@ class Menu {
     
 
    
-// Submenú para editar un proyecto
+
 public function SubMenuEditarProyectos() {
-    // Instanciar GestorTarea pasando el gestorProyecto existente
-    $gestorTarea = new GestorTarea($this->gestorProyecto);  // Aquí pasamos $this->gestorProyecto
+   
+    $gestorTarea = new GestorTarea($this->gestorProyecto);  
 
     echo "Ingrese el ID del proyecto a editar: ";
     $id_proyecto = trim(fgets(STDIN));
 
-    // Llamar al método editarProyecto de GestorProyecto
+   
     $this->gestorProyecto->editarProyecto($id_proyecto);
     
     return;
@@ -251,17 +251,17 @@ public function SubMenuEditarProyectos() {
 
 
 // Crear primero el gestor de proyectos
-$gestorTarea = new GestorTarea(null);  // Inicialización temporal, si es necesario
-$gestorProyecto = new GestorProyecto($gestorTarea);  // Ahora pasas gestorTarea al gestorProyecto
+$gestorTarea = new GestorTarea(null);  // Inicialización temporal
+$gestorProyecto = new GestorProyecto($gestorTarea);  
 
-// Ahora crea el gestorTarea con el gestorProyecto correctamente
+
 $gestorTarea = new GestorTarea($gestorProyecto);
 
-// Después, el gestor de usuarios y el menú
+
 $gestorUsuario = new GestorUsuario();
 $menu = new Menu($gestorUsuario, $gestorProyecto, $gestorTarea);
 
-// Iniciar el menú
+
 $menu->iniciar();
 
 
