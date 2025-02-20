@@ -1,15 +1,6 @@
 {
     "proyecto": [
         {
-            "id_proyecto": 1,
-            "nombre": "la",
-            "descripcion": "a",
-            "fechaInicio": "2025-02-20",
-            "fechaFin": "2025-03-20",
-            "estado": "activo",
-            "tareas": []
-        },
-        {
             "id_proyecto": 2,
             "nombre": "pizza",
             "descripcion": "a",
@@ -18,18 +9,8 @@
             "estado": "activo",
             "tareas": [
                 11,
-                13
-            ]
-        },
-        {
-            "id_proyecto": 3,
-            "nombre": "Nuevo proyecto",
-            "descripcion": "a",
-            "fechaInicio": "2025-02-12",
-            "fechaFin": "2025-05-12",
-            "estado": "activo",
-            "tareas": [
-                12
+                13,
+                16
             ]
         },
         {
@@ -53,6 +34,15 @@
             "tareas": [
                 15
             ]
+        },
+        {
+            "id_proyecto": 6,
+            "nombre": "probando",
+            "descripcion": "a",
+            "fechaInicio": "2025-05-10",
+            "fechaFin": "2025-08-10",
+            "estado": "activo",
+            "tareas": []
         }
     ]
 }
