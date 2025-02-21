@@ -53,7 +53,8 @@
             "fechaFin": "2025-04-20",
             "estado": "activo",
             "tareas": [
-                15
+                15,
+                40
             ]
         },
         {
