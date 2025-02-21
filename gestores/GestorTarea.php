@@ -77,6 +77,7 @@
                 }
             
                 file_put_contents($this->archivoJsonTareas, json_encode(['tareas' => $tareasData], JSON_PRETTY_PRINT));
+            
             }
 public function listarTareas() {
         if (empty($this->tareas)) {
