@@ -78,7 +78,28 @@
             
                 file_put_contents($this->archivoJsonTareas, json_encode(['tareas' => $tareasData], JSON_PRETTY_PRINT));
             }
+public function listarTareas() {
+        if (empty($this->tareas)) {
+            echo "No hay tareas registrados.\n";
+            return;
+        }
 
+        echo "=== Tareas Registrados ===\n";
+        foreach ($this->tareas as $tarea) {
+            echo "Id: " . $tarea->getIdTarea() ." Con id Proyecto " . $tarea->getIdProyecto(). "\n" ;
+        }
+    }
+    public function listarTareasProyecto($tareasProy) {
+        if (empty($tareasProy)) {
+            echo "No hay tareas registrados.\n";
+            return;
+        }
+
+        echo "=== Tareas Registrados ===\n";
+        foreach ($tareasProy as $tarea) {
+            echo "Id: " . $tarea->getIdTarea() ." Con id Proyecto " . $tarea->getIdProyecto(). "\n" ;
+        }
+    }
        
           
 public function crearTarea($gestorProyecto) {
@@ -173,11 +194,17 @@ public function crearTarea($gestorProyecto) {
             
              
                 $this->guardarTareaEnJson($nuevaTarea);
-            
-              
+                //echo "cant de tareas antes: " . count($this->tareas) . "\n" ;
+                $this->tareas[] = $nuevaTarea;
+                //$this->listarTareas();
+    
+                //echo "cant de tareas despues: " .count($this->tareas) . "\n";
+
                 $gestorProyecto->agregarTareaAlProyecto($id_proyecto, $nuevaTarea);
-            
-                echo "Tarea creada exitosamente: " . $nuevaTarea->getNombre() . " con ID " . $nuevaTarea->getIdTarea() . "\n";
+                
+             
+                //$this->listarTareasProyecto($this->getTareasPorProyecto($id_proyecto));
+                echo "Tarea creada exitosamente: " . $nuevaTarea->getNombre() . " con ID " . $nuevaTarea->getIdTarea() . "con ID Proyecto: " . $nuevaTarea->getIdProyecto() . "\n";
             }
 
             
@@ -423,6 +450,8 @@ public function crearTarea($gestorProyecto) {
                 }
             
                 file_put_contents($this->archivoJsonTareas, json_encode(['tareas' => $tareasData], JSON_PRETTY_PRINT));
+                
+           
             }
 
             public function calcularCaminoCritico($id_proyecto) {
@@ -512,8 +541,11 @@ public function crearTarea($gestorProyecto) {
             
             
                 public function getTareasPorProyecto($id_proyecto) {
-                    
+                    $this->listarTareas();
+
+
                     return array_filter($this->tareas, function($tarea) use ($id_proyecto) {
+
                         return $tarea->getIdProyecto() == $id_proyecto;
                     });
                 }

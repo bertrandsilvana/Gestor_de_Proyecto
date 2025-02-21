@@ -11,6 +11,12 @@
             "nombre": "",
             "email": "",
             "clave": ""
+        },
+        {
+            "id_usuario": 3,
+            "nombre": "",
+            "email": "",
+            "clave": ""
         }
     ]
 }
