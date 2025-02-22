@@ -487,6 +487,7 @@
                 file_put_contents($this->archivoJsonTareas, json_encode(['tareas' => $tareasData], JSON_PRETTY_PRINT));
                 
                 $this->tareas[] = $tarea;   
+
             }
 
             public function calcularCaminoCritico($id_proyecto) {

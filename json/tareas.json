@@ -14,8 +14,8 @@
             "nombre": "nueva",
             "descripcion": "a",
             "fecha_inicio": "2025-03-06",
-            "fecha_fin": "2025-03-12",
-            "id_proyecto": "2",
+            "fecha_fin": "2025-03-15",
+            "id_proyecto": 2,
             "dependencias": [
                 "11"
             ]
