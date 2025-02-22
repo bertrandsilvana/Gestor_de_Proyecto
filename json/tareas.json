@@ -373,6 +373,17 @@
             "dependencias": [
                 "14"
             ]
+        },
+        {
+            "id_tarea": 47,
+            "nombre": "a",
+            "descripcion": "a",
+            "fecha_inicio": "2025-03-08",
+            "fecha_fin": "2025-03-09",
+            "id_proyecto": "4",
+            "dependencias": [
+                "46"
+            ]
         }
     ]
 }
