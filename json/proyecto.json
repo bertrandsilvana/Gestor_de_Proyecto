@@ -44,7 +44,8 @@
             "tareas": [
                 14,
                 46,
-                47
+                47,
+                48
             ]
         },
         {
@@ -72,6 +73,50 @@
             "fechaFin": "2025-08-10",
             "estado": "activo",
             "tareas": []
+        },
+        {
+            "id_proyecto": 5,
+            "nombre": "koko",
+            "descripcion": "kak",
+            "fechaInicio": "2025-03-02",
+            "fechaFin": "2025-04-01",
+            "estado": "activo",
+            "tareas": []
+        },
+        {
+            "id_proyecto": 6,
+            "nombre": "a",
+            "descripcion": "a",
+            "fechaInicio": "2025-02-03",
+            "fechaFin": "2025-02-05",
+            "estado": "activo",
+            "tareas": []
+        },
+        {
+            "id_proyecto": 7,
+            "nombre": "jkjdskdjskjds",
+            "descripcion": "2025-02-02",
+            "fechaInicio": "2025-03-03",
+            "fechaFin": "2025-04-04",
+            "estado": "activo",
+            "tareas": [
+                49,
+                51,
+                52
+            ]
+        },
+        {
+            "id_proyecto": 8,
+            "nombre": "prueba",
+            "descripcion": "a",
+            "fechaInicio": "2025-02-02",
+            "fechaFin": "2025-04-02",
+            "estado": "activo",
+            "tareas": [
+                53,
+                54,
+                55
+            ]
         }
     ]
 }

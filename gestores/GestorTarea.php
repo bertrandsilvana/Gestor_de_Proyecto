@@ -18,7 +18,7 @@
       
              public function cargarTareaDesdeJson() {
 
-                $this->tareas = []; // agregue esto para reiniciar la lista antes de cargarla para probar 
+                $this->tareas = []; 
                 if (file_exists($this->archivoJsonTareas)) {
                     $contenidoJson = file_get_contents($this->archivoJsonTareas);
                     $data = json_decode($contenidoJson, true);
@@ -55,19 +55,18 @@
                 return $maxId + 1; 
             }
 
-           /* public function guardarTareaEnJson($tarea) {
+        
+            public function guardarTareaEnJson($tarea) {
                 $tareasData = [];
             
                 if (file_exists($this->archivoJsonTareas)) {
                     $contenidoJson = file_get_contents($this->archivoJsonTareas);
                     $data = json_decode($contenidoJson, true);
+            
+                    
                     if (isset($data['tareas'])) {
                         foreach ($data['tareas'] as $tareaData) {
-                            if ($tareaData['id_tarea'] == $tarea->getIdTarea()) {
-                                $tareasData[] = $tarea->toArray();
-                            } else {
-                                $tareasData[] = $tareaData;
-                            }
+                            $tareasData[] = $tareaData; 
                         }
                     }
                 }
@@ -75,36 +74,11 @@
                
                 $idsExistentes = array_column($tareasData, 'id_tarea');
                 if (!in_array($tarea->getIdTarea(), $idsExistentes)) {
+                   
                     $tareasData[] = $tarea->toArray();
                 }
             
-                file_put_contents($this->archivoJsonTareas, json_encode(['tareas' => $tareasData], JSON_PRETTY_PRINT));
-            
-            }*/
-            public function guardarTareaEnJson($tarea) {
-                $tareasData = [];
-            
-                // Si el archivo JSON existe, cargar las tareas ya guardadas
-                if (file_exists($this->archivoJsonTareas)) {
-                    $contenidoJson = file_get_contents($this->archivoJsonTareas);
-                    $data = json_decode($contenidoJson, true);
-            
-                    // Verificar si existe el campo 'tareas' y cargar las tareas previas
-                    if (isset($data['tareas'])) {
-                        foreach ($data['tareas'] as $tareaData) {
-                            $tareasData[] = $tareaData; // Cargar todas las tareas previas
-                        }
-                    }
-                }
-            
-                // Verificar si la tarea ya está en el archivo (por ID)
-                $idsExistentes = array_column($tareasData, 'id_tarea');
-                if (!in_array($tarea->getIdTarea(), $idsExistentes)) {
-                    // Si la tarea no existe, agregarla
-                    $tareasData[] = $tarea->toArray();
-                }
-            
-                // Guardar las tareas, incluida la nueva, en el archivo JSON
+                
                 file_put_contents($this->archivoJsonTareas, json_encode(['tareas' => $tareasData], JSON_PRETTY_PRINT));
             }
             
@@ -113,19 +87,14 @@
                     echo "No hay tareas registrados.\n";
                     return;
                 }
-
-                echo "=== Tareas Registrados ===\n";
-                foreach ($this->tareas as $tarea) {
-                    echo "Id: " . $tarea->getIdTarea() ." Con id Proyecto " . $tarea->getIdProyecto(). "\n" ;
-                }
             }
             public function listarTareasProyecto($tareasProy) {
                 if (empty($tareasProy)) {
-                    echo "No hay tareas registrados.\n";
+                    echo "No hay tareas registradas.\n";
                     return;
                 }
 
-                echo "=== Tareas Registrados ===\n";
+                echo "=== Tareas Registradas ===\n";
                 foreach ($tareasProy as $tarea) {
                     echo "Id: " . $tarea->getIdTarea() ." Con id Proyecto " . $tarea->getIdProyecto(). "\n" ;
                 }
@@ -142,17 +111,37 @@
                         return;  
                         }
                 echo "¿La tarea tiene dependencias? (sí/no): ";
-                $respuesta = trim(fgets(STDIN));
-                    
+                $respuesta = trim(fgets(STDIN));          
                 $dependencias = [];
                 if (strtolower($respuesta) == "sí" || strtolower($respuesta) == "si") {
-                    echo "Ingrese los IDs de las tareas de las cuales depende (separados por comas): ";
-                    $dependencias = explode(",", trim(fgets(STDIN)));  
-                    $dependencias = array_map('trim', $dependencias); 
+                    do {
+                        echo "Ingrese el ID de la tarea de la que depende: ";
+                        $dependencias = explode(",", trim(fgets(STDIN)));  
+                        $dependencias = array_map('trim', $dependencias); 
+                        $tareasInvalidas = [];
+
+                    foreach ($dependencias as $id_dependencia) {
+                        $tareaDependiente = $this->buscarTareaPorId($id_dependencia);
+                        if ($tareaDependiente === null) {
+                            $tareasInvalidas[] = $id_dependencia;
+                        }
                     }
-                    
-        //-------------------------------------------------------------------------------------
-                    
+     
+                 if (count($tareasInvalidas) > 0) {
+                     echo "Las siguientes tareas con los ID(s) no existen: " . implode(", ", $tareasInvalidas) . "\n";
+                     echo "1. Volver a ingresar el ID(s)\n";
+                     echo "2. Volver al menú\n";
+                     echo "Seleccione una opción (1 o 2): ";
+                     $opcion = trim(fgets(STDIN));
+                     
+                     if ($opcion == '2') {
+                         echo "Regresando al menú...\n";
+                         return; 
+                     }
+                 }
+             } while (count($tareasInvalidas) > 0);
+         }
+     
                 if (count($dependencias) > 0) {
                             
                     $fechaInicio = $this->obtenerFechaDeFinDeUltimaDependencia($dependencias, $gestorProyecto);
@@ -167,86 +156,68 @@
                     }
                         
                         
-                            do {
-                                echo "Ingrese la fecha de inicio de la tarea (formato: Y-m-d): ";
-                                $fechaInicioInput = trim(fgets(STDIN));
+                    do {
+                        echo "Ingrese la fecha de inicio de la tarea (formato: Y-m-d): ";
+                        $fechaInicioInput = trim(fgets(STDIN));
+                        $fechaInicio = DateTime::createFromFormat('Y-m-d', $fechaInicioInput);
                         
-                            
-                                $fechaInicio = DateTime::createFromFormat('Y-m-d', $fechaInicioInput);
-                        
-                                
-                                if (!$fechaInicio || $fechaInicio->format('Y-m-d') !== $fechaInicioInput) {
-                                    echo "La fecha ingresada no tiene un formato válido. Debe ser Y-m-d (por ejemplo: 2025-02-18).\n";
-                                    continue;  
-                                }
-                        
-                            
-                                if ($fechaInicio < $fechaInicioProyecto) {
-                                    echo "La fecha de inicio de la tarea no puede ser anterior a la fecha de inicio del proyecto ({$fechaInicioProyecto->format('Y-m-d')}).\n";
-                                } elseif ($fechaInicio > $fechaFinProyecto) {
-                                    echo "La fecha de inicio de la tarea no puede ser posterior a la fecha de fin del proyecto ({$fechaFinProyecto->format('Y-m-d')}).\n";
-                                }
-                        
-                            } while ($fechaInicio < $fechaInicioProyecto || $fechaInicio > $fechaFinProyecto);
+                        if (!$fechaInicio || $fechaInicio->format('Y-m-d') !== $fechaInicioInput) {
+                            echo "La fecha ingresada no tiene un formato válido. Debe ser Y-m-d (por ejemplo: 2025-02-18).\n";
+                            continue;  
                         }
+                        
+                            
+                        if ($fechaInicio < $fechaInicioProyecto) {
+                            echo "La fecha de inicio de la tarea no puede ser anterior a la fecha de inicio del proyecto ({$fechaInicioProyecto->format('Y-m-d')}).\n";
+                        } elseif ($fechaInicio > $fechaFinProyecto) {
+                            echo "La fecha de inicio de la tarea no puede ser posterior a la fecha de fin del proyecto ({$fechaFinProyecto->format('Y-m-d')}).\n";
+                        }
+                        
+                        } while ($fechaInicio < $fechaInicioProyecto || $fechaInicio > $fechaFinProyecto);
+                }
                     
-                        //-------------------------------------------------------------------------------------
                     
+                echo "Ingrese el nombre de la tarea: ";
+                $nombre = trim(fgets(STDIN));
                     
-                        echo "Ingrese el nombre de la tarea: ";
-                        $nombre = trim(fgets(STDIN));
-                    
-                        echo "Ingrese la descripción de la tarea: ";
-                        $descripcion = trim(fgets(STDIN));
+                echo "Ingrese la descripción de la tarea: ";
+                $descripcion = trim(fgets(STDIN));
                     
                         
                         
-                        do {
-                            echo "Ingrese la duración de la tarea en días: ";
-                            $duracion = trim(fgets(STDIN));
+                do {
+                    echo "Ingrese la duración de la tarea en días: ";
+                    $duracion = trim(fgets(STDIN));
                     
                             
                             
-                            if (!is_numeric($duracion) || $duracion <= 0) {
-                                echo "La duración debe ser un número positivo.\n";
-                            }
-                        } while (!is_numeric($duracion) || $duracion <= 0);
-                    
-                        
-                        $fechaFin = clone $fechaInicio; 
-                        $fechaFin->modify("+$duracion days");
-                    
-                        echo "La fecha de fin calculada para la tarea es: " . $fechaFin->format('Y-m-d') . "\n";
-                    
-                    
-                        $idTarea = $this->obtenerNuevoIdTarea(); 
-                        $nuevaTarea = new Tarea($idTarea, $nombre, $descripcion, $fechaInicio, $fechaFin, $id_proyecto, $dependencias);
-                    
-                    
-                        $this->guardarTareaEnJson($nuevaTarea);
-                        //echo "cant de tareas antes: " . count($this->tareas) . "\n" ;
-                        $this->cargarTareaDesdeJson();// vemos si funciona en teoria actualiza  la lista 
-
-                        $this->tareas[] = $nuevaTarea;
-                        //$this->listarTareas();
-            
-                        //echo "cant de tareas despues: " .count($this->tareas) . "\n";
-
-                        $gestorProyecto->agregarTareaAlProyecto($id_proyecto, $nuevaTarea);
-
-                         // probamos si estan todas las tareas 
-                         $gestorProyecto->listarTareasPorProyecto($id_proyecto);
-
-                    
-                        //$this->listarTareasProyecto($this->getTareasPorProyecto($id_proyecto));
-                        echo "Tarea creada exitosamente: " . $nuevaTarea->getNombre() . " con ID " . $nuevaTarea->getIdTarea() . "con ID Proyecto: " . $nuevaTarea->getIdProyecto() . "\n";
+                    if (!is_numeric($duracion) || $duracion <= 0) {
+                         echo "La duración debe ser un número positivo.\n";
                     }
 
+                } while (!is_numeric($duracion) || $duracion <= 0);
+                     
+                    $fechaFin = clone $fechaInicio; 
+                    $fechaFin->modify("+$duracion days");
+                    
+                    echo "La fecha de fin calculada para la tarea es: " . $fechaFin->format('Y-m-d') . "\n";
+                    
+                    $idTarea = $this->obtenerNuevoIdTarea(); 
+                    $nuevaTarea = new Tarea($idTarea, $nombre, $descripcion, $fechaInicio, $fechaFin, $id_proyecto, $dependencias);
+                    
+                    $this->guardarTareaEnJson($nuevaTarea);
+                    $this->cargarTareaDesdeJson();
+                    $this->tareas[] = $nuevaTarea;
+
+                    $gestorProyecto->agregarTareaAlProyecto($id_proyecto, $nuevaTarea);
+                    $gestorProyecto->listarTareasPorProyecto($id_proyecto);
+
+                    echo "Tarea creada exitosamente: " . $nuevaTarea->getNombre() . " con ID " . $nuevaTarea->getIdTarea() . "con ID Proyecto: " . $nuevaTarea->getIdProyecto() . "\n";
+        }
+
                     
                 
-                    
-                
-                    public function obtenerFechaDeFinDeUltimaDependencia($dependencias, $gestorProyecto) {
+            public function obtenerFechaDeFinDeUltimaDependencia($dependencias, $gestorProyecto) {
                         
                         $ultimaFechaFin = null;
                 
@@ -275,12 +246,12 @@
                     }
                 
                     
-                    public function obtenerTodasLasTareas() {
+            public function obtenerTodasLasTareas() {
                         return $this->tareas;
                     }
                     
 
-                    public function editarTarea($id_tarea) {
+            public function editarTarea($id_tarea) {
                         $tarea = $this->buscarTareaPorId($id_tarea);
                     
                         if (!$tarea) {
@@ -310,23 +281,16 @@
                                 echo "Ingrese la nueva descripción de la tarea: ";
                                 $descripcion = trim(fgets(STDIN));
                                 $tarea->setDescripcion($descripcion);
-                                break;
-                    
-                            case '3':  
+                                break; 
                             case '3':  
                                 echo "Ingrese la nueva duración de la tarea en días: ";
                                 $duracion = trim(fgets(STDIN));
-                    
-                            
                                 $fecha_fin = clone $tarea->getFechaInicio();  
                                 $fecha_fin->modify("+$duracion days");
                                 $tarea->setFechaFin($fecha_fin);
-                    
                             
                                 $this->verificarYActualizarTareasSiguientes($tarea, $duracion);
                     
-                            
-                                
                                 $this->calcularCaminoCritico($tarea->getIdProyecto());
                                 break;
                     
@@ -353,7 +317,7 @@
                     }
                     
                 
-                    public function verificarYActualizarTareasSiguientes($tarea, $nuevaDuracion) {
+            public function verificarYActualizarTareasSiguientes($tarea, $nuevaDuracion) {
                     
                         $tareasProyecto = $this->getTareasPorProyecto($tarea->getIdProyecto());
                         
@@ -386,19 +350,17 @@
                                 }
                             }
                         }
-                    } 
-                
-                    
-                    
-                    
+                    }                                               
 
                 
-                    public function validarFecha($fecha) {
+            public function validarFecha($fecha) {
                     
                         $patron = '/^\d{4}-\d{2}-\d{2}$/';
                         return preg_match($patron, $fecha) === 1;
                     }
-                    public function verificarYActualizarCaminoCritico($tarea) {
+
+
+            public function verificarYActualizarCaminoCritico($tarea) {
                         echo "=== Recalculando el camino crítico ===\n";
                         
                         
@@ -422,7 +384,7 @@
                     
                     
                     
-                    public function actualizarFechaFinProyecto($id_proyecto) {
+            public function actualizarFechaFinProyecto($id_proyecto) {
                             
                             $tareasDelProyecto = $this->getTareasPorProyecto($id_proyecto);
                             
@@ -446,7 +408,7 @@
 
                                     
                 
-                    public function eliminarTarea($id_tarea) {
+            public function eliminarTarea($id_tarea) {
                         $tareaEliminada = null;
                         
                         foreach ($this->tareas as $key => $tarea) {
