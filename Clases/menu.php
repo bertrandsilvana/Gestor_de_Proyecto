@@ -141,11 +141,12 @@ class Menu {
                     $this->gestorTarea->crearTarea($this->gestorProyecto);
                     break;
                 case '6':
-                    
+                    //$this->gestorTarea->listarTareas();
                      echo "Ingrese el ID del proyecto: ";
                      $id_proyecto = trim(fgets(STDIN));
                      if ($id_proyecto) {
                          $this->gestorProyecto->listarTareasPorProyecto($id_proyecto);
+                         //$this->gestorTarea->listarTareasProyecto($this->gestorTarea->getTareasPorProyecto($id_proyecto));
                      } else {
                          echo "ID de proyecto no válido.\n";
                      }

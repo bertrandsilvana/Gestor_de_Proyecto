@@ -12,7 +12,7 @@ class GestorProyecto {
 
     public function __construct($gestorTarea) {
         $this->gestorTarea = $gestorTarea; 
-        $this->cargarDesdeJSON();
+        $this->cargarDesdeJson();
     }
     public function setGestorTarea($gestorTarea) {
         $this->gestorTarea = $gestorTarea;
@@ -168,6 +168,7 @@ class GestorProyecto {
     }
       
       public function listarTareasPorProyecto($id_proyecto) {
+        $this->cargarDesdeJson();
         $proyecto = null;
         foreach ($this->proyectos as $p) {
             if ($p->getId_proyecto() == $id_proyecto) {
@@ -182,15 +183,15 @@ class GestorProyecto {
         }
 
        
-        $tareas = $this->gestorTarea->getTareasPorProyecto($id_proyecto);
+        $tareasProyecto = $this->gestorTarea->getTareasPorProyecto($id_proyecto);
         
-        if (empty($tareas)) {
+        if (empty($tareasProyecto)) {
             echo "No hay tareas asociadas a este proyecto.\n";
             return;
         }
 
         echo "=== Tareas del Proyecto: {$proyecto->getNombre()} ===\n";
-        foreach ($tareas as $tarea) {
+        foreach ($tareasProyecto as $tarea) {
             echo "ID Tarea: {$tarea->getIdTarea()}\n";
             echo "Nombre: {$tarea->getNombre()}\n";
             echo "Descripción: {$tarea->getDescripcion()}\n";
@@ -365,12 +366,12 @@ class GestorProyecto {
     
               
                 foreach ($data['proyecto'] as $proyectoData) {
-                    $tareas = [];
+                    $tareasP = [];
                     if (isset($proyectoData['tareas']) && is_array($proyectoData['tareas'])) {
                         foreach ($proyectoData['tareas'] as $idTarea) {
                             $tarea = $this->gestorTarea->buscarTareaPorId($idTarea); 
                             if ($tarea) {
-                                $tareas[] = $tarea; 
+                                $tareasP[] = $tarea; 
                             }
                         }
                     }
@@ -383,7 +384,7 @@ class GestorProyecto {
                         new DateTime($proyectoData['fechaInicio']),
                         new DateTime($proyectoData['fechaFin']),
                         $proyectoData['estado'],
-                        $tareas 
+                        $tareasP 
                     );
                 }
     
@@ -433,6 +434,7 @@ class GestorProyecto {
             }
         }
         $this->guardarEnJSON();
+        $this->cargarDesdeJson();
     }
     public function eliminarTareaDeProyecto($id_proyecto, $id_tarea) {
         foreach ($this->proyectos as $proyecto) {

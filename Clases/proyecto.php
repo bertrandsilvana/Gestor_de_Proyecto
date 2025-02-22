@@ -65,8 +65,8 @@ class Proyecto {
     public function setEstado($estado) {
         $this->estado = $estado;
     }
-    public function setTareas($tareas) {
-        $this->tareas = $tareas;
+    public function setTareas($tarea) {
+        $this->tareas = $tarea;
     }
     public function agregarTarea($tarea) {
         $this->tareas[] = $tarea;
