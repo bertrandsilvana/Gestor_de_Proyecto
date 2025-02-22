@@ -1,375 +1,12 @@
 {
     "tareas": [
         {
-            "id_tarea": 11,
-            "nombre": "aceituna",
-            "descripcion": "a",
-            "fecha_inicio": "2025-02-24",
-            "fecha_fin": "2025-03-11",
-            "id_proyecto": 2,
-            "dependencias": []
-        },
-        {
-            "id_tarea": 13,
-            "nombre": "nueva",
-            "descripcion": "a",
-            "fecha_inicio": "2025-03-06",
-            "fecha_fin": "2025-03-15",
-            "id_proyecto": 2,
-            "dependencias": [
-                "11"
-            ]
-        },
-        {
-            "id_tarea": 14,
-            "nombre": "w",
-            "descripcion": "w",
-            "fecha_inicio": "2025-03-01",
-            "fecha_fin": "2025-03-05",
-            "id_proyecto": "4",
-            "dependencias": []
-        },
-        {
-            "id_tarea": 15,
-            "nombre": "a",
-            "descripcion": "a",
-            "fecha_inicio": "2025-03-20",
-            "fecha_fin": "2025-03-26",
-            "id_proyecto": "5",
-            "dependencias": []
-        },
-        {
-            "id_tarea": 16,
-            "nombre": "pizza romana",
-            "descripcion": "aaaa",
-            "fecha_inicio": "2025-03-13",
-            "fecha_fin": "2025-03-16",
-            "id_proyecto": "2",
-            "dependencias": [
-                "13"
-            ]
-        },
-        {
-            "id_tarea": 17,
-            "nombre": "a",
-            "descripcion": "a",
-            "fecha_inicio": "2025-03-17",
-            "fecha_fin": "2025-03-20",
-            "id_proyecto": "2",
-            "dependencias": [
-                "16"
-            ]
-        },
-        {
-            "id_tarea": 18,
-            "nombre": "a",
-            "descripcion": "",
-            "fecha_inicio": "2025-03-21",
-            "fecha_fin": "2025-03-23",
-            "id_proyecto": "2",
-            "dependencias": []
-        },
-        {
-            "id_tarea": 19,
-            "nombre": "a",
-            "descripcion": "a",
-            "fecha_inicio": "2025-03-24",
-            "fecha_fin": "2025-03-26",
-            "id_proyecto": "2",
-            "dependencias": [
-                "18"
-            ]
-        },
-        {
-            "id_tarea": 20,
-            "nombre": "a",
-            "descripcion": "a",
-            "fecha_inicio": "2025-03-24",
-            "fecha_fin": "2025-03-26",
-            "id_proyecto": "2",
-            "dependencias": [
-                "18"
-            ]
-        },
-        {
-            "id_tarea": 21,
-            "nombre": "a",
-            "descripcion": "a",
-            "fecha_inicio": "2025-03-27",
-            "fecha_fin": "2025-03-29",
-            "id_proyecto": "2",
-            "dependencias": [
-                "20"
-            ]
-        },
-        {
-            "id_tarea": 22,
-            "nombre": "a",
-            "descripcion": "a",
-            "fecha_inicio": "2025-03-30",
-            "fecha_fin": "2025-04-01",
-            "id_proyecto": "2",
-            "dependencias": [
-                "21"
-            ]
-        },
-        {
-            "id_tarea": 23,
-            "nombre": "a",
-            "descripcion": "a",
-            "fecha_inicio": "2025-04-02",
-            "fecha_fin": "2025-04-03",
-            "id_proyecto": "2",
-            "dependencias": [
-                "22"
-            ]
-        },
-        {
-            "id_tarea": 24,
-            "nombre": "a",
-            "descripcion": "a",
-            "fecha_inicio": "2025-04-04",
-            "fecha_fin": "2025-04-05",
-            "id_proyecto": "2",
-            "dependencias": [
-                "23"
-            ]
-        },
-        {
-            "id_tarea": 25,
-            "nombre": "a",
-            "descripcion": "a",
-            "fecha_inicio": "2025-04-06",
-            "fecha_fin": "2025-04-07",
-            "id_proyecto": "2",
-            "dependencias": [
-                "24"
-            ]
-        },
-        {
-            "id_tarea": 26,
-            "nombre": "s",
-            "descripcion": "s",
-            "fecha_inicio": "2025-04-08",
-            "fecha_fin": "2025-04-12",
-            "id_proyecto": "2",
-            "dependencias": [
-                "25"
-            ]
-        },
-        {
-            "id_tarea": 27,
-            "nombre": "gg",
-            "descripcion": "ffdg",
-            "fecha_inicio": "2025-02-24",
-            "fecha_fin": "2025-03-01",
-            "id_proyecto": "2",
-            "dependencias": []
-        },
-        {
-            "id_tarea": 28,
-            "nombre": "hgfhf",
-            "descripcion": "hfghfgh",
-            "fecha_inicio": "2025-04-13",
-            "fecha_fin": "2025-04-18",
-            "id_proyecto": 2,
-            "dependencias": [
-                "26",
-                "27"
-            ]
-        },
-        {
-            "id_tarea": 29,
-            "nombre": "fdgd",
-            "descripcion": "dfgdfg",
-            "fecha_inicio": "2025-04-13",
-            "fecha_fin": "2025-06-07",
-            "id_proyecto": "2",
-            "dependencias": [
-                "26"
-            ]
-        },
-        {
-            "id_tarea": 30,
-            "nombre": "dfsf",
-            "descripcion": "gdfg",
-            "fecha_inicio": "2025-04-06",
-            "fecha_fin": "2025-04-11",
-            "id_proyecto": "2",
-            "dependencias": [
-                "24"
-            ]
-        },
-        {
-            "id_tarea": 31,
-            "nombre": "sdfsd",
-            "descripcion": "fsdfsd",
-            "fecha_inicio": "2025-03-02",
-            "fecha_fin": "2025-04-26",
-            "id_proyecto": "2",
-            "dependencias": [
-                "27"
-            ]
-        },
-        {
-            "id_tarea": 32,
-            "nombre": "dsfsdf",
-            "descripcion": "dfgdf",
-            "fecha_inicio": "2025-04-19",
-            "fecha_fin": "2025-06-02",
-            "id_proyecto": "2",
-            "dependencias": [
-                "28"
-            ]
-        },
-        {
-            "id_tarea": 33,
-            "nombre": "fdgdfg",
-            "descripcion": "fgdfg",
-            "fecha_inicio": "2025-04-19",
-            "fecha_fin": "2025-04-24",
-            "id_proyecto": "2",
-            "dependencias": [
-                "28"
-            ]
-        },
-        {
-            "id_tarea": 34,
-            "nombre": "sfsd",
-            "descripcion": "sdfsd",
-            "fecha_inicio": "2025-04-19",
-            "fecha_fin": "2025-06-02",
-            "id_proyecto": "2",
-            "dependencias": [
-                "28"
-            ]
-        },
-        {
-            "id_tarea": 35,
-            "nombre": "sdfsd",
-            "descripcion": "fsdfsd",
-            "fecha_inicio": "2025-06-08",
-            "fecha_fin": "2025-07-22",
-            "id_proyecto": "2",
-            "dependencias": [
-                "29"
-            ]
-        },
-        {
-            "id_tarea": 36,
-            "nombre": "fsdf",
-            "descripcion": "sdfsdf",
-            "fecha_inicio": "2025-06-08",
-            "fecha_fin": "2025-06-12",
-            "id_proyecto": "2",
-            "dependencias": [
-                "29"
-            ]
-        },
-        {
-            "id_tarea": 37,
-            "nombre": "dsfsd",
-            "descripcion": "sdfs",
-            "fecha_inicio": "2025-06-08",
-            "fecha_fin": "2025-06-14",
-            "id_proyecto": "2",
-            "dependencias": [
-                "29"
-            ]
-        },
-        {
-            "id_tarea": 38,
-            "nombre": "sadfas",
-            "descripcion": "fsdfsd",
-            "fecha_inicio": "2025-04-19",
-            "fecha_fin": "2025-04-24",
-            "id_proyecto": "2",
-            "dependencias": [
-                "28"
-            ]
-        },
-        {
-            "id_tarea": 39,
-            "nombre": "sdfds",
-            "descripcion": "fsdf",
-            "fecha_inicio": "2025-04-19",
-            "fecha_fin": "2025-04-23",
-            "id_proyecto": "2",
-            "dependencias": [
-                "28"
-            ]
-        },
-        {
-            "id_tarea": 40,
-            "nombre": "r",
-            "descripcion": "r",
-            "fecha_inicio": "2025-03-27",
-            "fecha_fin": "2025-03-29",
-            "id_proyecto": "5",
-            "dependencias": [
-                "15"
-            ]
-        },
-        {
-            "id_tarea": 41,
-            "nombre": "a",
-            "descripcion": "a",
-            "fecha_inicio": "2025-03-20",
-            "fecha_fin": "2025-03-21",
-            "id_proyecto": "5",
-            "dependencias": []
-        },
-        {
-            "id_tarea": 42,
-            "nombre": "a",
-            "descripcion": "a",
-            "fecha_inicio": "2025-03-22",
-            "fecha_fin": "2025-03-23",
-            "id_proyecto": "5",
-            "dependencias": [
-                "41"
-            ]
-        },
-        {
-            "id_tarea": 43,
-            "nombre": "a",
-            "descripcion": "a",
-            "fecha_inicio": "2025-03-24",
-            "fecha_fin": "2025-03-25",
-            "id_proyecto": "5",
-            "dependencias": [
-                "42"
-            ]
-        },
-        {
-            "id_tarea": 44,
-            "nombre": "a",
-            "descripcion": "a",
-            "fecha_inicio": "2025-03-26",
-            "fecha_fin": "2025-03-27",
-            "id_proyecto": "5",
-            "dependencias": [
-                "43"
-            ]
-        },
-        {
-            "id_tarea": 45,
-            "nombre": "a",
-            "descripcion": "a",
-            "fecha_inicio": "2025-03-26",
-            "fecha_fin": "2025-03-27",
-            "id_proyecto": "5",
-            "dependencias": [
-                "43"
-            ]
-        },
-        {
             "id_tarea": 46,
             "nombre": "a",
             "descripcion": "a",
             "fecha_inicio": "2025-03-06",
             "fecha_fin": "2025-03-07",
-            "id_proyecto": "4",
+            "id_proyecto": 4,
             "dependencias": [
                 "14"
             ]
@@ -380,9 +17,73 @@
             "descripcion": "a",
             "fecha_inicio": "2025-03-08",
             "fecha_fin": "2025-03-09",
+            "id_proyecto": 4,
+            "dependencias": [
+                "46"
+            ]
+        },
+        {
+            "id_tarea": 48,
+            "nombre": "a",
+            "descripcion": "a",
+            "fecha_inicio": "2025-03-10",
+            "fecha_fin": "2025-03-25",
+            "id_proyecto": 4,
+            "dependencias": [
+                "47"
+            ]
+        },
+        {
+            "id_tarea": 49,
+            "nombre": "a",
+            "descripcion": "a",
+            "fecha_inicio": "2025-03-08",
+            "fecha_fin": "2025-03-09",
+            "id_proyecto": 4,
+            "dependencias": [
+                "46"
+            ]
+        },
+        {
+            "id_tarea": 49,
+            "nombre": "a",
+            "descripcion": "a",
+            "fecha_inicio": "2025-03-08",
+            "fecha_fin": "2025-03-09",
             "id_proyecto": "4",
             "dependencias": [
                 "46"
+            ]
+        },
+        {
+            "id_tarea": 50,
+            "nombre": "a",
+            "descripcion": "a",
+            "fecha_inicio": "2025-03-10",
+            "fecha_fin": "2025-03-11",
+            "id_proyecto": "4",
+            "dependencias": [
+                "49"
+            ]
+        },
+        {
+            "id_tarea": 51,
+            "nombre": "es",
+            "descripcion": "asi",
+            "fecha_inicio": "2025-04-30",
+            "fecha_fin": "2025-05-02",
+            "id_proyecto": "3",
+            "dependencias": []
+        },
+        {
+            "id_tarea": 52,
+            "nombre": "por favor",
+            "descripcion": "aaa",
+            "fecha_inicio": "2025-05-03",
+            "fecha_fin": "2025-05-05",
+            "id_proyecto": "3",
+            "dependencias": [
+                "51"
             ]
         }
     ]

@@ -108,7 +108,7 @@
                 file_put_contents($this->archivoJsonTareas, json_encode(['tareas' => $tareasData], JSON_PRETTY_PRINT));
             }
             
-                public function listarTareas() {
+           /*     public function listarTareas() {
                 if (empty($this->tareas)) {
                     echo "No hay tareas registrados.\n";
                     return;
@@ -118,8 +118,8 @@
                 foreach ($this->tareas as $tarea) {
                     echo "Id: " . $tarea->getIdTarea() ." Con id Proyecto " . $tarea->getIdProyecto(). "\n" ;
                 }
-            }
-            public function listarTareasProyecto($tareasProy) {
+            }*/
+          /*  public function listarTareasProyecto($tareasProy) {
                 if (empty($tareasProy)) {
                     echo "No hay tareas registrados.\n";
                     return;
@@ -129,7 +129,7 @@
                 foreach ($tareasProy as $tarea) {
                     echo "Id: " . $tarea->getIdTarea() ." Con id Proyecto " . $tarea->getIdProyecto(). "\n" ;
                 }
-            }
+            }*/
             
           
         public function crearTarea($gestorProyecto) {
@@ -577,7 +577,7 @@
             
             
                 public function getTareasPorProyecto($id_proyecto) {
-                    $this->listarTareas();
+                  //  $this->listarTareas();
 
 
                     return array_filter($this->tareas, function($tarea) use ($id_proyecto) {
