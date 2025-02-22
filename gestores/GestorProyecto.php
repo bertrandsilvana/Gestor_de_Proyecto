@@ -201,14 +201,14 @@ class GestorProyecto {
         }
     }*/
     public function listarTareasPorProyecto($id_proyecto) {
-        $proyecto = $this->buscarProyectoPorId($id_proyecto);  // Buscar el proyecto en memoria
+        $proyecto = $this->buscarProyectoPorId($id_proyecto);  // buscamos el proyecto por id en memoria 
     
         if (!$proyecto) {
             echo "Proyecto con ID {$id_proyecto} no encontrado.\n";
             return;
         }
     
-        $tareasProyecto = $proyecto->getTareas();  // Recuperar tareas del proyecto en memoria
+        $tareasProyecto = $proyecto->getTareas();  // para recuperar las tareas
     
         if (empty($tareasProyecto)) {
             echo "No hay tareas asociadas a este proyecto.\n";
