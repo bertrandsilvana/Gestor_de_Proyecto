@@ -167,7 +167,7 @@ class GestorProyecto {
         $this->proyectos[] = $proyecto;
     }
       
-      public function listarTareasPorProyecto($id_proyecto) {
+      /*public function listarTareasPorProyecto($id_proyecto) {
         $this->cargarDesdeJson();
         $proyecto = null;
         foreach ($this->proyectos as $p) {
@@ -199,7 +199,33 @@ class GestorProyecto {
             echo "Fecha de Fin: {$tarea->getFechaFin()->format('Y-m-d')}\n";
             echo "-------------------------\n";
         }
+    }*/
+    public function listarTareasPorProyecto($id_proyecto) {
+        $proyecto = $this->buscarProyectoPorId($id_proyecto);  // Buscar el proyecto en memoria
+    
+        if (!$proyecto) {
+            echo "Proyecto con ID {$id_proyecto} no encontrado.\n";
+            return;
+        }
+    
+        $tareasProyecto = $proyecto->getTareas();  // Recuperar tareas del proyecto en memoria
+    
+        if (empty($tareasProyecto)) {
+            echo "No hay tareas asociadas a este proyecto.\n";
+            return;
+        }
+    
+        echo "=== Tareas del Proyecto: {$proyecto->getNombre()} ===\n";
+        foreach ($tareasProyecto as $tarea) {
+            echo "ID Tarea: {$tarea->getIdTarea()}\n";
+            echo "Nombre: {$tarea->getNombre()}\n";
+            echo "Descripción: {$tarea->getDescripcion()}\n";
+            echo "Fecha de Inicio: {$tarea->getFechaInicio()->format('Y-m-d')}\n";
+            echo "Fecha de Fin: {$tarea->getFechaFin()->format('Y-m-d')}\n";
+            echo "-------------------------\n";
+        }
     }
+    
        
         
      public function buscarProyectoPorId($id_proyecto) {
@@ -433,8 +459,8 @@ class GestorProyecto {
                 break;
             }
         }
-        $this->guardarEnJSON();
-        $this->cargarDesdeJson();
+         $this->guardarEnJSON();
+       // $this->cargarDesdeJson();
     }
     public function eliminarTareaDeProyecto($id_proyecto, $id_tarea) {
         foreach ($this->proyectos as $proyecto) {
