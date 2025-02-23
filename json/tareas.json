@@ -24,8 +24,8 @@
         },
         {
             "id_tarea": 48,
-            "nombre": "a",
-            "descripcion": "a",
+            "nombre": "bb",
+            "descripcion": "48",
             "fecha_inicio": "2025-03-10",
             "fecha_fin": "2025-03-25",
             "id_proyecto": 4,
@@ -50,7 +50,7 @@
             "descripcion": "a",
             "fecha_inicio": "2025-03-08",
             "fecha_fin": "2025-03-09",
-            "id_proyecto": "4",
+            "id_proyecto": 4,
             "dependencias": [
                 "46"
             ]
@@ -61,7 +61,7 @@
             "descripcion": "a",
             "fecha_inicio": "2025-03-10",
             "fecha_fin": "2025-03-11",
-            "id_proyecto": "4",
+            "id_proyecto": 4,
             "dependencias": [
                 "49"
             ]
@@ -72,7 +72,7 @@
             "descripcion": "asi",
             "fecha_inicio": "2025-04-30",
             "fecha_fin": "2025-05-02",
-            "id_proyecto": "3",
+            "id_proyecto": 3,
             "dependencias": []
         },
         {
@@ -81,7 +81,29 @@
             "descripcion": "aaa",
             "fecha_inicio": "2025-05-03",
             "fecha_fin": "2025-05-05",
-            "id_proyecto": "3",
+            "id_proyecto": 3,
+            "dependencias": [
+                "51"
+            ]
+        },
+        {
+            "id_tarea": 52,
+            "nombre": "por favor",
+            "descripcion": "aaa",
+            "fecha_inicio": "2025-05-03",
+            "fecha_fin": "2025-05-05",
+            "id_proyecto": 3,
+            "dependencias": [
+                "51"
+            ]
+        },
+        {
+            "id_tarea": 52,
+            "nombre": "por favor",
+            "descripcion": "aaa",
+            "fecha_inicio": "2025-05-03",
+            "fecha_fin": "2025-05-05",
+            "id_proyecto": 3,
             "dependencias": [
                 "51"
             ]

@@ -107,6 +107,9 @@
                 // Guardar las tareas, incluida la nueva, en el archivo JSON
                 file_put_contents($this->archivoJsonTareas, json_encode(['tareas' => $tareasData], JSON_PRETTY_PRINT));
             }
+
+
+
             
            /*     public function listarTareas() {
                 if (empty($this->tareas)) {
@@ -348,7 +351,7 @@
                         $this->actualizarFechaFinProyecto($tarea->getIdProyecto());
                     
                     
-                        $this->guardarTareaEnJson($tarea);
+                        $this->guardarTodasLasTareasEnJson();
                         echo "Tarea actualizada.\n";
                     }
                     
