@@ -313,9 +313,6 @@
                         }
                     
                     
-                        $this->actualizarFechaFinProyecto($tarea->getIdProyecto());
-                    
-                    
                         $this->guardarTodasLasTareasEnJson();
                         echo "Tarea actualizada.\n";
                     }
@@ -447,6 +444,7 @@
 
             }
 
+           
             public function calcularCaminoCritico($id_proyecto) {
                 $tareasProyecto = $this->getTareasPorProyecto($id_proyecto);
             
@@ -460,7 +458,7 @@
                     echo "ID: " . $tarea->getIdTarea() . ", Nombre: " . $tarea->getNombre() . ", Fecha Inicio: " . $tarea->getFechaInicio()->format('Y-m-d') . ", Fecha Fin: " . $tarea->getFechaFin()->format('Y-m-d') . "\n";
                 }
             
-                // Verificar si todas las tareas son independientes
+                // tenemos que verificar si todas las tareas son independientes
                 $tareasIndependientes = true;
                 foreach ($tareasProyecto as $tarea) {
                     if (count($tarea->getDependencias()) > 0) {
@@ -485,36 +483,37 @@
                 $tareasCaminoCritico = [];
             
                 foreach ($ordenTareas as $tarea) {
-                    echo "Tarea: " . $tarea->getNombre() . ", Fecha Inicio: " . $tarea->getFechaInicio()->format('Y-m-d') . ", Fecha Fin: " . $tarea->getFechaFin()->format('Y-m-d') . "\n";
+                    // tenemos en cuenta solo tareas con dependencias en el camino crítico
+                    if (count($tarea->getDependencias()) > 0) {
+                        echo "Tarea: " . $tarea->getNombre() . ", Fecha Inicio: " . $tarea->getFechaInicio()->format('Y-m-d') . ", Fecha Fin: " . $tarea->getFechaFin()->format('Y-m-d') . "\n";
             
-                    // Comprobar si la tarea debe ser parte del camino crítico
-                    if ($ultimaFechaFin === null || $tarea->getFechaFin() >= $ultimaFechaFin) {
-                        // Solo agregar si no está ya incluida
-                        if (!in_array($tarea, $tareasCaminoCritico)) {
-                            $tareasCaminoCritico[] = $tarea; 
+                        // Comprobar si la tarea debe ser parte del camino crítico
+                        if ($ultimaFechaFin === null || $tarea->getFechaInicio() >= $ultimaFechaFin) {
+                            // Solo agregar si no está ya incluida
+                            if (!in_array($tarea, $tareasCaminoCritico)) {
+                                $tareasCaminoCritico[] = $tarea; 
+                            }
+                            $ultimaFechaFin = $tarea->getFechaFin(); 
                         }
-                        $ultimaFechaFin = $tarea->getFechaFin(); 
                     }
                 }
             
-                // Mostrar las tareas del camino crítico
+                // Mostramos las tareas del camino crítico
                 foreach ($tareasCaminoCritico as $tarea) {
                     echo "Tarea del Camino Crítico: " . $tarea->getNombre() . ", Fecha Inicio: " . $tarea->getFechaInicio()->format('Y-m-d') . ", Fecha Fin: " . $tarea->getFechaFin()->format('Y-m-d') . "\n";
                 }
-            //----------------------------------------------------
+            
+                // Mostramos cuando termina el proyecto
                 if ($ultimaFechaFin !== null) {
-               
                     $fechaFinProyecto = $ultimaFechaFin;
             
                     echo "=== Fecha de Finalización del Proyecto ===\n";
                     echo "La fecha estimada de finalización del proyecto es: " . $fechaFinProyecto->format('Y-m-d') . "\n";
                     echo "Si la fecha de fin estimada del proyecto no coincide con la fecha programada.\n";
                     echo "Vuelva al menú y vaya al punto 3 para editarla.\n";
-            
-                
                 }
-                //-----------------------------------------------------------------------
             }
+            
             public function ordenarTareasPorDependencias($tareas) {
                 $tareasOrdenadas = [];  
                 $tareasPendientes = $tareas;  

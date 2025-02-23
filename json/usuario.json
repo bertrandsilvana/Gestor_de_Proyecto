@@ -23,6 +23,12 @@
             "nombre": "flor",
             "email": "flor",
             "clave": "flor"
+        },
+        {
+            "id_usuario": 5,
+            "nombre": "",
+            "email": "",
+            "clave": ""
         }
     ]
 }
