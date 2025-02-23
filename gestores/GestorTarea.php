@@ -361,11 +361,9 @@
 
 
             public function verificarYActualizarCaminoCritico($tarea) {
-                        echo "=== Recalculando el camino crítico ===\n";
-                        
-                        
-                        $camino_critico_afectado = false;
-                    
+                echo "=== Recalculando el camino crítico ===\n";
+                         
+                    $camino_critico_afectado = false;
                     
                         foreach ($this->getTareasPorProyecto($tarea->getIdProyecto()) as $tarea_comparada) {
                             if ($tarea_comparada->getFechaFin() > $tarea->getFechaInicio()) {
@@ -375,38 +373,32 @@
                             }
                         }
                     
-                    
                         if ($camino_critico_afectado) {
                         
                             $this->calcularCaminoCritico($id_proyecto);
                         }
-                    }
+            }
                     
-                    
-                    
+                           
             public function actualizarFechaFinProyecto($id_proyecto) {
                             
-                            $tareasDelProyecto = $this->getTareasPorProyecto($id_proyecto);
+                $tareasDelProyecto = $this->getTareasPorProyecto($id_proyecto);
                             
+                    usort($tareasDelProyecto, function($a, $b) {
+                        return $a->getFechaFin() <=> $b->getFechaFin();
+                    });
                             
-                            usort($tareasDelProyecto, function($a, $b) {
-                                return $a->getFechaFin() <=> $b->getFechaFin();
-                            });
-                            
+                        $ultimaTarea = end($tareasDelProyecto);
                         
-                            $ultimaTarea = end($tareasDelProyecto);
+                    if ($ultimaTarea) {
                             
-                        
-                            if ($ultimaTarea) {
-                            
-                                $nuevaFechaFinProyecto = $ultimaTarea->getFechaFin();
-                                echo "Fecha de finalización del proyecto actualizada: " . $nuevaFechaFinProyecto->format('Y-m-d') . "\n";
-                            }
+                        $nuevaFechaFinProyecto = $ultimaTarea->getFechaFin();
+                        echo "Fecha de finalización del proyecto actualizada: " . $nuevaFechaFinProyecto->format('Y-m-d') . "\n";
+                    }
                             
                             
-                        }   
-
-                                    
+            }   
+                       
                 
             public function eliminarTarea($id_tarea) {
                         $tareaEliminada = null;
@@ -429,8 +421,7 @@
                         }
                     }
                     
-
-       
+     
             public function guardarTodasLasTareasEnJson() {
                 $tareasData = [];
             
@@ -453,42 +444,43 @@
             }
 
             public function calcularCaminoCritico($id_proyecto) {
-                
                 $tareasProyecto = $this->getTareasPorProyecto($id_proyecto);
-                
+            
                 if (empty($tareasProyecto)) {
                     echo "No hay tareas asociadas a este proyecto.\n";
                     return;
                 }
             
-                
                 echo "=== Lista de Tareas ===\n";
                 foreach ($tareasProyecto as $tarea) {
                     echo "ID: " . $tarea->getIdTarea() . ", Nombre: " . $tarea->getNombre() . ", Fecha Inicio: " . $tarea->getFechaInicio()->format('Y-m-d') . ", Fecha Fin: " . $tarea->getFechaFin()->format('Y-m-d') . "\n";
                 }
             
-               
                 usort($tareasProyecto, function($a, $b) {
                     return $a->getFechaInicio() <=> $b->getFechaInicio();
                 });
             
-                
                 $ordenTareas = $this->ordenarTareasPorDependencias($tareasProyecto);
             
-                
                 echo "=== Camino Crítico ===\n";
-                $ultimaFechaFin = null; 
+                $ultimaFechaFin = null;
+                $tareasCaminoCritico = [];
             
                 foreach ($ordenTareas as $tarea) {
                     echo "Tarea: " . $tarea->getNombre() . ", Fecha Inicio: " . $tarea->getFechaInicio()->format('Y-m-d') . ", Fecha Fin: " . $tarea->getFechaFin()->format('Y-m-d') . "\n";
                     
-                   
-                    if ($ultimaFechaFin === null || $tarea->getFechaFin() > $ultimaFechaFin) {
-                        $ultimaFechaFin = $tarea->getFechaFin();
+                    // Solo agregamos tareas con la fecha de fin más tarde
+                    if ($ultimaFechaFin === null || $tarea->getFechaFin() >= $ultimaFechaFin) {
+                        $tareasCaminoCritico[] = $tarea;  // Añadimos la tarea al camino crítico
+                        $ultimaFechaFin = $tarea->getFechaFin();  // Actualizamos la fecha de fin más tarde
                     }
                 }
             
-                
+                // Mostrar tareas del camino crítico
+                foreach ($tareasCaminoCritico as $tarea) {
+                    echo "Tarea del Camino Crítico: " . $tarea->getNombre() . ", Fecha Inicio: " . $tarea->getFechaInicio()->format('Y-m-d') . ", Fecha Fin: " . $tarea->getFechaFin()->format('Y-m-d') . "\n";
+                }
+            
                 if ($ultimaFechaFin !== null) {
                     echo "=== Fecha de Finalización del Proyecto ===\n";
                     echo "La fecha estimada de finalización del proyecto es: " . $ultimaFechaFin->format('Y-m-d') . "\n";

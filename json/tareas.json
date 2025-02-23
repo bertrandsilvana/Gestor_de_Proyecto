@@ -411,7 +411,7 @@
             "descripcion": "q",
             "fecha_inicio": "2025-04-06",
             "fecha_fin": "2025-04-09",
-            "id_proyecto": "7",
+            "id_proyecto": 7,
             "dependencias": [
                 "49"
             ]
@@ -422,7 +422,7 @@
             "descripcion": "a",
             "fecha_inicio": "2025-04-10",
             "fecha_fin": "2025-04-16",
-            "id_proyecto": "7",
+            "id_proyecto": 7,
             "dependencias": [
                 "50"
             ]
@@ -433,7 +433,7 @@
             "descripcion": "q",
             "fecha_inicio": "2025-03-04",
             "fecha_fin": "2025-03-08",
-            "id_proyecto": "7",
+            "id_proyecto": 7,
             "dependencias": []
         },
         {
@@ -442,7 +442,7 @@
             "descripcion": "s",
             "fecha_inicio": "2025-03-02",
             "fecha_fin": "2025-04-21",
-            "id_proyecto": "8",
+            "id_proyecto": 8,
             "dependencias": []
         },
         {
@@ -451,7 +451,7 @@
             "descripcion": "aa",
             "fecha_inicio": "2025-04-22",
             "fecha_fin": "2025-04-29",
-            "id_proyecto": "8",
+            "id_proyecto": 8,
             "dependencias": [
                 "53"
             ]
@@ -462,10 +462,19 @@
             "descripcion": "a",
             "fecha_inicio": "2025-04-30",
             "fecha_fin": "2025-05-05",
-            "id_proyecto": "8",
+            "id_proyecto": 8,
             "dependencias": [
                 "54"
             ]
+        },
+        {
+            "id_tarea": 56,
+            "nombre": "fdfsfss",
+            "descripcion": "sdfdsf",
+            "fecha_inicio": "2025-03-07",
+            "fecha_fin": "2025-05-16",
+            "id_proyecto": "10",
+            "dependencias": []
         }
     ]
 }

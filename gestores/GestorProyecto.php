@@ -317,31 +317,24 @@ class GestorProyecto {
     public function eliminarTareasAsociadas($id_proyecto) {
         
         $archivoTareas = './Json/tareas.json';
-    
-     
-    
         
         if (!file_exists($archivoTareas)) {
             echo "El archivo tareas.json no existe.\n";
             return; 
         }
-    
-        
+         
         $contenidoJson = file_get_contents($archivoTareas);
-        $tareas = json_decode($contenidoJson, true);
-    
+        $tareas = json_decode($contenidoJson, true);  
        
         if ($tareas === null || !isset($tareas['tareas'])) {
             echo "No se pudo leer correctamente el archivo tareas.json o no contiene tareas.\n";
             return; 
         }
-    
        
         $tareasRestantes = array_filter($tareas['tareas'], function($tarea) use ($id_proyecto) {
             return $tarea['id_proyecto'] != $id_proyecto;
         });
-    
-        
+       
         file_put_contents($archivoTareas, json_encode(['tareas' => array_values($tareasRestantes)], JSON_PRETTY_PRINT));
     
         echo "Tareas asociadas al proyecto eliminadas correctamente.\n";
