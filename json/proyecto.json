@@ -1,75 +1,51 @@
 {
     "proyecto": [
         {
-            "id_proyecto": 2,
-            "nombre": "pizza",
+            "id_proyecto": 8,
+            "nombre": "prueba",
             "descripcion": "a",
-            "fechaInicio": "2025-02-24",
-            "fechaFin": "2025-03-25",
+            "fechaInicio": "2025-02-02",
+            "fechaFin": "2025-04-02",
             "estado": "activo",
             "tareas": [
-                11,
-                13,
-                16,
-                17,
-                20,
-                21,
-                22,
-                23,
-                24,
-                25,
-                26,
-                27,
-                28,
-                29,
-                30,
-                31,
-                32,
-                33,
-                34,
-                35,
-                36,
-                37,
-                38,
-                39
+                54,
+                55
             ]
         },
         {
-            "id_proyecto": 4,
-            "nombre": "a",
-            "descripcion": "a",
-            "fechaInicio": "2025-02-27",
-            "fechaFin": "2025-03-12",
+            "id_proyecto": 12,
+            "nombre": "edito",
+            "descripcion": "sdfs",
+            "fechaInicio": "2025-03-02",
+            "fechaFin": "2025-04-02",
             "estado": "activo",
             "tareas": [
-                14
+                60
             ]
         },
         {
-            "id_proyecto": 5,
-            "nombre": "a",
+            "id_proyecto": 10,
+            "nombre": "nuevo lala",
             "descripcion": "a",
-            "fechaInicio": "2025-03-20",
-            "fechaFin": "2025-04-20",
+            "fechaInicio": "2025-03-06",
+            "fechaFin": "2025-05-05",
             "estado": "activo",
             "tareas": [
-                15,
-                40,
-                41,
-                42,
-                43,
-                44,
-                45
+                56
             ]
         },
         {
-            "id_proyecto": 6,
-            "nombre": "probando",
-            "descripcion": "a",
-            "fechaInicio": "2025-05-10",
-            "fechaFin": "2025-08-10",
+            "id_proyecto": 15,
+            "nombre": "AveFenix",
+            "descripcion": "es una prueba de proyecto final",
+            "fechaInicio": "2025-12-03",
+            "fechaFin": "2026-12-02",
             "estado": "activo",
-            "tareas": []
+            "tareas": [
+                61,
+                62,
+                63
+            ]
         }
     ]
 }

@@ -167,29 +167,22 @@ class GestorProyecto {
         $this->proyectos[] = $proyecto;
     }
       
-      public function listarTareasPorProyecto($id_proyecto) {
-        $this->cargarDesdeJson();
-        $proyecto = null;
-        foreach ($this->proyectos as $p) {
-            if ($p->getId_proyecto() == $id_proyecto) {
-                $proyecto = $p;
-                break;
-            }
-        }
 
+    public function listarTareasPorProyecto($id_proyecto) {
+        $proyecto = $this->buscarProyectoPorId($id_proyecto);  // buscamos el proyecto por id en memoria 
+    
         if (!$proyecto) {
             echo "Proyecto con ID {$id_proyecto} no encontrado.\n";
             return;
         }
-
-       
-        $tareasProyecto = $this->gestorTarea->getTareasPorProyecto($id_proyecto);
-        
+    
+        $tareasProyecto = $proyecto->getTareas();  // para recuperar las tareas
+    
         if (empty($tareasProyecto)) {
             echo "No hay tareas asociadas a este proyecto.\n";
             return;
         }
-
+    
         echo "=== Tareas del Proyecto: {$proyecto->getNombre()} ===\n";
         foreach ($tareasProyecto as $tarea) {
             echo "ID Tarea: {$tarea->getIdTarea()}\n";
@@ -200,6 +193,7 @@ class GestorProyecto {
             echo "-------------------------\n";
         }
     }
+    
        
         
      public function buscarProyectoPorId($id_proyecto) {
@@ -260,32 +254,64 @@ class GestorProyecto {
                 echo "Descripción actualizada.\n";
                 break;
             case '3':
-                echo "Ingrese la nueva fecha de inicio (formato: Y-m-d): ";
-                $nuevaFechaInicio = trim(fgets(STDIN));
-                $proyecto->setFechaInicio(new DateTime($nuevaFechaInicio));
-                echo "Fecha de inicio actualizada.\n";
+                // controlamos que los datos ingresados sean en formato fecha y que el año no sea inferior a 2025
+                $fechaInicioValida = false;
+                while (!$fechaInicioValida) {
+                    echo "Ingrese la nueva fecha de inicio (formato: Y-m-d): ";
+                    $nuevaFechaInicio = trim(fgets(STDIN));
+    
+                    // Validación para asegurar que la fecha tiene el formato correcto y es posterior a 2025
+                    $fechaInicioObj = DateTime::createFromFormat('Y-m-d', $nuevaFechaInicio);
+                    if ($fechaInicioObj && $fechaInicioObj->format('Y-m-d') === $nuevaFechaInicio) {
+                        $anioInicio = $fechaInicioObj->format('Y');
+                        if ($anioInicio >= 2025) {
+                            $proyecto->setFechaInicio($fechaInicioObj);
+                            $fechaInicioValida = true;
+                            echo "Fecha de inicio actualizada.\n";
+                        } else {
+                            echo "El año de la fecha de inicio no puede ser inferior a 2025.\n";
+                        }
+                    } else {
+                        echo "El formato de fecha ingresado no es válido. Debe ser Y-m-d. Ejemplo: 2025-02-08.\n";
+                    }
+                }
                 break;
             case '4':
-                echo "Ingrese la nueva fecha de fin (formato: Y-m-d): ";
-                $nuevaFechaFin = trim(fgets(STDIN));
-                $proyecto->setFechaFin(new DateTime($nuevaFechaFin));
-                echo "Fecha de fin actualizada.\n";
+                $fechaFinValida = false;
+                while (!$fechaFinValida) {
+                    echo "Ingrese la nueva fecha de fin (formato: Y-m-d): ";
+                    $nuevaFechaFin = trim(fgets(STDIN));
+    
+                    // Validación para asegurar que la fecha tiene el formato correcto y no es anterior a la fecha de inicio
+                    $fechaFinObj = DateTime::createFromFormat('Y-m-d', $nuevaFechaFin);
+                    if ($fechaFinObj && $fechaFinObj->format('Y-m-d') === $nuevaFechaFin) {
+                        if ($fechaFinObj >= $proyecto->getFechaInicio()) {
+                            $proyecto->setFechaFin($fechaFinObj);
+                            $fechaFinValida = true;
+                            echo "Fecha de fin actualizada.\n";
+                        } else {
+                            echo "La fecha de fin no puede ser anterior a la fecha de inicio.\n";
+                        }
+                    } else {
+                        echo "El formato de fecha ingresado no es válido. Debe ser Y-m-d. Ejemplo: 2025-02-08.\n";
+                    }
+                }
                 break;
             case '5':
-                echo "Ingrese el nuevo estado del proyecto: ";
-                $nuevoEstado = trim(fgets(STDIN));
-                $proyecto->setEstado($nuevoEstado);
-                echo "Estado actualizado.\n";
-                break;
+                    echo "Ingrese el nuevo estado del proyecto: ";
+                    $nuevoEstado = trim(fgets(STDIN));
+                    $proyecto->setEstado($nuevoEstado);
+                    echo "Estado actualizado.\n";
+                    break;
             case '0':
-                echo "Volviendo al menú anterior...\n";
-                return;
+                    echo "Volviendo al menú anterior...\n";
+                    return;
             default:
-                echo "Opción no válida.\n";
-                break;
+                    echo "Opción no válida.\n";
+                    break;
         }
     
-        $this->guardarEnJSON();
+            $this->guardarEnJSON();
     }
     
    
@@ -323,31 +349,24 @@ class GestorProyecto {
     public function eliminarTareasAsociadas($id_proyecto) {
         
         $archivoTareas = './Json/tareas.json';
-    
-     
-    
         
         if (!file_exists($archivoTareas)) {
             echo "El archivo tareas.json no existe.\n";
             return; 
         }
-    
-        
+         
         $contenidoJson = file_get_contents($archivoTareas);
-        $tareas = json_decode($contenidoJson, true);
-    
+        $tareas = json_decode($contenidoJson, true);  
        
         if ($tareas === null || !isset($tareas['tareas'])) {
             echo "No se pudo leer correctamente el archivo tareas.json o no contiene tareas.\n";
             return; 
         }
-    
        
         $tareasRestantes = array_filter($tareas['tareas'], function($tarea) use ($id_proyecto) {
             return $tarea['id_proyecto'] != $id_proyecto;
         });
-    
-        
+       
         file_put_contents($archivoTareas, json_encode(['tareas' => array_values($tareasRestantes)], JSON_PRETTY_PRINT));
     
         echo "Tareas asociadas al proyecto eliminadas correctamente.\n";
@@ -433,8 +452,7 @@ class GestorProyecto {
                 break;
             }
         }
-        $this->guardarEnJSON();
-        $this->cargarDesdeJson();
+         $this->guardarEnJSON();
     }
     public function eliminarTareaDeProyecto($id_proyecto, $id_tarea) {
         foreach ($this->proyectos as $proyecto) {
