@@ -250,8 +250,7 @@
                         return $this->tareas;
                     }
                     
-
-            public function editarTarea($id_tarea) {
+                    public function editarTarea($id_tarea) {
                         $tarea = $this->buscarTareaPorId($id_tarea);
                     
                         if (!$tarea) {
@@ -281,16 +280,23 @@
                                 echo "Ingrese la nueva descripción de la tarea: ";
                                 $descripcion = trim(fgets(STDIN));
                                 $tarea->setDescripcion($descripcion);
-                                break; 
+                                break;
+                    
+                            case '3':  
                             case '3':  
                                 echo "Ingrese la nueva duración de la tarea en días: ";
                                 $duracion = trim(fgets(STDIN));
+                    
+                            
                                 $fecha_fin = clone $tarea->getFechaInicio();  
                                 $fecha_fin->modify("+$duracion days");
                                 $tarea->setFechaFin($fecha_fin);
+                    
                             
                                 $this->verificarYActualizarTareasSiguientes($tarea, $duracion);
                     
+                            
+                                
                                 $this->calcularCaminoCritico($tarea->getIdProyecto());
                                 break;
                     
@@ -312,7 +318,7 @@
                         $this->actualizarFechaFinProyecto($tarea->getIdProyecto());
                     
                     
-                        $this->guardarTareaEnJson($tarea);
+                        $this->guardarTodasLasTareasEnJson();
                         echo "Tarea actualizada.\n";
                     }
                     
@@ -499,26 +505,18 @@
                 }
             //----------------------------------------------------
                 if ($ultimaFechaFin !== null) {
-                    // Fecha estimada de finalización del proyecto
+               
                     $fechaFinProyecto = $ultimaFechaFin;
             
                     echo "=== Fecha de Finalización del Proyecto ===\n";
                     echo "La fecha estimada de finalización del proyecto es: " . $fechaFinProyecto->format('Y-m-d') . "\n";
+                    echo "Si la fecha de fin estimada del proyecto no coincide con la fecha programada.\n";
+                    echo "Vuelva al menú y vaya al punto 3 para editarla.\n";
             
-                    // Comparamos la fecha de fin estimada con la fecha programada en el proyecto
-                    // $proyecto = $this->getProyectoPorId($id_proyecto); // Asumiendo que tienes un método que obtiene el proyecto
-                    // $fechaFinProyectoOriginal = $proyecto->getFechaFin();
-            
-                    // if ($fechaFinProyecto->format('Y-m-d') !== $fechaFinProyectoOriginal->format('Y-m-d')) {
-                    //     echo "La fecha de fin estimada del proyecto no coincide con la fecha programada.\n";
-                    //     echo "Para editar la fecha, vuelva al menú y vaya al punto 3.\n";
-                    // }
+                
                 }
                 //-----------------------------------------------------------------------
             }
-            
-            
-            
             public function ordenarTareasPorDependencias($tareas) {
                 $tareasOrdenadas = [];  
                 $tareasPendientes = $tareas;  

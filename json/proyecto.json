@@ -146,17 +146,41 @@
             "fechaFin": "2025-03-23",
             "estado": "activo",
             "tareas": [
-                57
+                57,
+                58,
+                59
             ]
         },
         {
             "id_proyecto": 12,
-            "nombre": "sdfsdfsf",
+            "nombre": "edito",
             "descripcion": "sdfs",
             "fechaInicio": "2025-03-02",
             "fechaFin": "2025-04-02",
             "estado": "activo",
+            "tareas": [
+                60
+            ]
+        },
+        {
+            "id_proyecto": 13,
+            "nombre": "dfdsfds",
+            "descripcion": "sdf",
+            "fechaInicio": "2025-02-04",
+            "fechaFin": "2025-03-04",
+            "estado": "activo",
             "tareas": []
+        },
+        {
+            "id_proyecto": 14,
+            "nombre": "jota",
+            "descripcion": "cea",
+            "fechaInicio": "2025-02-01",
+            "fechaFin": "2025-04-10",
+            "estado": "activo",
+            "tareas": [
+                61
+            ]
         }
     ]
 }

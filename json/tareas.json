@@ -473,7 +473,7 @@
             "descripcion": "sdfdsf",
             "fecha_inicio": "2025-03-07",
             "fecha_fin": "2025-05-16",
-            "id_proyecto": "10",
+            "id_proyecto": 10,
             "dependencias": []
         },
         {
@@ -482,7 +482,56 @@
             "descripcion": "tito",
             "fecha_inicio": "2025-02-27",
             "fecha_fin": "2025-03-03",
-            "id_proyecto": "11",
+            "id_proyecto": 11,
+            "dependencias": []
+        },
+        {
+            "id_tarea": 58,
+            "nombre": "goog",
+            "descripcion": "ggg",
+            "fecha_inicio": "2025-03-04",
+            "fecha_fin": "2025-03-08",
+            "id_proyecto": 11,
+            "dependencias": [
+                "57"
+            ]
+        },
+        {
+            "id_tarea": 59,
+            "nombre": "flor",
+            "descripcion": "flor",
+            "fecha_inicio": "2025-03-04",
+            "fecha_fin": "2025-03-09",
+            "id_proyecto": 11,
+            "dependencias": [
+                "57"
+            ]
+        },
+        {
+            "id_tarea": 60,
+            "nombre": "tomate",
+            "descripcion": "ytyty",
+            "fecha_inicio": "2025-03-03",
+            "fecha_fin": "2025-03-07",
+            "id_proyecto": 12,
+            "dependencias": []
+        },
+        {
+            "id_tarea": 61,
+            "nombre": "milanesa",
+            "descripcion": "aaa",
+            "fecha_inicio": "2025-03-03",
+            "fecha_fin": "2025-03-06",
+            "id_proyecto": 14,
+            "dependencias": []
+        },
+        {
+            "id_tarea": 61,
+            "nombre": "toto",
+            "descripcion": "aaa",
+            "fecha_inicio": "2025-03-03",
+            "fecha_fin": "2025-03-06",
+            "id_proyecto": "14",
             "dependencias": []
         }
     ]
