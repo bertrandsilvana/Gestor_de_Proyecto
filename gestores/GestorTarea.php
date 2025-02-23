@@ -263,7 +263,6 @@
                         echo "1. Nombre\n";
                         echo "2. Descripción\n";
                         echo "3. Duración en días\n";  
-                        echo "3. Duración en días\n";  
                         echo "4. Dependencias\n";
                         echo "0. Volver\n";
                     
@@ -281,8 +280,7 @@
                                 $descripcion = trim(fgets(STDIN));
                                 $tarea->setDescripcion($descripcion);
                                 break;
-                    
-                            case '3':  
+            
                             case '3':  
                                 echo "Ingrese la nueva duración de la tarea en días: ";
                                 $duracion = trim(fgets(STDIN));
