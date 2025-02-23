@@ -137,6 +137,26 @@
             "tareas": [
                 56
             ]
+        },
+        {
+            "id_proyecto": 11,
+            "nombre": "tomar mate",
+            "descripcion": "mata",
+            "fechaInicio": "2025-02-23",
+            "fechaFin": "2025-03-23",
+            "estado": "activo",
+            "tareas": [
+                57
+            ]
+        },
+        {
+            "id_proyecto": 12,
+            "nombre": "sdfsdfsf",
+            "descripcion": "sdfs",
+            "fechaInicio": "2025-03-02",
+            "fechaFin": "2025-04-02",
+            "estado": "activo",
+            "tareas": []
         }
     ]
 }

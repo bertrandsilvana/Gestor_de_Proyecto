@@ -456,6 +456,20 @@
                     echo "ID: " . $tarea->getIdTarea() . ", Nombre: " . $tarea->getNombre() . ", Fecha Inicio: " . $tarea->getFechaInicio()->format('Y-m-d') . ", Fecha Fin: " . $tarea->getFechaFin()->format('Y-m-d') . "\n";
                 }
             
+                // Verificar si todas las tareas son independientes
+                $tareasIndependientes = true;
+                foreach ($tareasProyecto as $tarea) {
+                    if (count($tarea->getDependencias()) > 0) {
+                        $tareasIndependientes = false;
+                        break; // Si encontramos una tarea que tiene dependencias, ya no es todo independiente
+                    }
+                }
+            
+                if ($tareasIndependientes) {
+                    echo "El proyecto solo contiene tareas independientes. El camino crítico no se verá afectado.\n";
+                    return;
+                }
+            
                 usort($tareasProyecto, function($a, $b) {
                     return $a->getFechaInicio() <=> $b->getFechaInicio();
                 });
@@ -468,23 +482,39 @@
             
                 foreach ($ordenTareas as $tarea) {
                     echo "Tarea: " . $tarea->getNombre() . ", Fecha Inicio: " . $tarea->getFechaInicio()->format('Y-m-d') . ", Fecha Fin: " . $tarea->getFechaFin()->format('Y-m-d') . "\n";
-                    
-                    // Solo agregamos tareas con la fecha de fin más tarde
+            
+                    // Comprobar si la tarea debe ser parte del camino crítico
                     if ($ultimaFechaFin === null || $tarea->getFechaFin() >= $ultimaFechaFin) {
-                        $tareasCaminoCritico[] = $tarea;  // Añadimos la tarea al camino crítico
-                        $ultimaFechaFin = $tarea->getFechaFin();  // Actualizamos la fecha de fin más tarde
+                        // Solo agregar si no está ya incluida
+                        if (!in_array($tarea, $tareasCaminoCritico)) {
+                            $tareasCaminoCritico[] = $tarea; 
+                        }
+                        $ultimaFechaFin = $tarea->getFechaFin(); 
                     }
                 }
             
-                // Mostrar tareas del camino crítico
+                // Mostrar las tareas del camino crítico
                 foreach ($tareasCaminoCritico as $tarea) {
                     echo "Tarea del Camino Crítico: " . $tarea->getNombre() . ", Fecha Inicio: " . $tarea->getFechaInicio()->format('Y-m-d') . ", Fecha Fin: " . $tarea->getFechaFin()->format('Y-m-d') . "\n";
                 }
-            
+            //----------------------------------------------------
                 if ($ultimaFechaFin !== null) {
+                    // Fecha estimada de finalización del proyecto
+                    $fechaFinProyecto = $ultimaFechaFin;
+            
                     echo "=== Fecha de Finalización del Proyecto ===\n";
-                    echo "La fecha estimada de finalización del proyecto es: " . $ultimaFechaFin->format('Y-m-d') . "\n";
+                    echo "La fecha estimada de finalización del proyecto es: " . $fechaFinProyecto->format('Y-m-d') . "\n";
+            
+                    // Comparamos la fecha de fin estimada con la fecha programada en el proyecto
+                    // $proyecto = $this->getProyectoPorId($id_proyecto); // Asumiendo que tienes un método que obtiene el proyecto
+                    // $fechaFinProyectoOriginal = $proyecto->getFechaFin();
+            
+                    // if ($fechaFinProyecto->format('Y-m-d') !== $fechaFinProyectoOriginal->format('Y-m-d')) {
+                    //     echo "La fecha de fin estimada del proyecto no coincide con la fecha programada.\n";
+                    //     echo "Para editar la fecha, vuelva al menú y vaya al punto 3.\n";
+                    // }
                 }
+                //-----------------------------------------------------------------------
             }
             
             

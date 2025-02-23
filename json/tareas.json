@@ -475,6 +475,15 @@
             "fecha_fin": "2025-05-16",
             "id_proyecto": "10",
             "dependencias": []
+        },
+        {
+            "id_tarea": 57,
+            "nombre": "toto",
+            "descripcion": "tito",
+            "fecha_inicio": "2025-02-27",
+            "fecha_fin": "2025-03-03",
+            "id_proyecto": "11",
+            "dependencias": []
         }
     ]
 }
