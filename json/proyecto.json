@@ -1,50 +1,23 @@
 {
     "proyecto": [
         {
-            "id_proyecto": 8,
-            "nombre": "prueba",
-            "descripcion": "a",
-            "fechaInicio": "2025-02-02",
-            "fechaFin": "2025-04-02",
+            "id_proyecto": 1,
+            "nombre": "Construcci\u0000n de vivienda unifamiliar en el barrio Los Alerces",
+            "descripcion": "Este proyecto involucra la construcci\u0000n de una casa de dos pisos con tres habitaciones, cocina, sal\u0000n, y ba\u0000os.",
+            "fechaInicio": "2025-03-01",
+            "fechaFin": "2025-09-02",
             "estado": "activo",
             "tareas": [
-                54,
-                55
-            ]
-        },
-        {
-            "id_proyecto": 12,
-            "nombre": "edito",
-            "descripcion": "sdfs",
-            "fechaInicio": "2025-03-02",
-            "fechaFin": "2025-04-02",
-            "estado": "activo",
-            "tareas": [
-                60
-            ]
-        },
-        {
-            "id_proyecto": 10,
-            "nombre": "nuevo lala",
-            "descripcion": "a",
-            "fechaInicio": "2025-03-06",
-            "fechaFin": "2025-05-05",
-            "estado": "activo",
-            "tareas": [
-                56
-            ]
-        },
-        {
-            "id_proyecto": 15,
-            "nombre": "AveFenix",
-            "descripcion": "es una prueba de proyecto final",
-            "fechaInicio": "2025-12-03",
-            "fechaFin": "2026-12-02",
-            "estado": "activo",
-            "tareas": [
-                61,
-                62,
-                63
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
             ]
         }
     ]

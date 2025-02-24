@@ -1,138 +1,140 @@
 {
     "tareas": [
         {
-            "id_tarea": 50,
-            "nombre": "qwq",
-            "descripcion": "q",
-            "fecha_inicio": "2025-04-06",
-            "fecha_fin": "2025-04-09",
-            "id_proyecto": 7,
+            "id_tarea": 1,
+            "nombre": "Fundaci\u0000n (Tarea 1)",
+            "descripcion": "Excavaci\u0000n y vertido de los cimientos.",
+            "fecha_inicio": "2025-03-01",
+            "fecha_fin": "2025-03-16",
+            "id_proyecto": 1,
+            "dependencias": []
+        },
+        {
+            "id_tarea": 2,
+            "nombre": "Estructura",
+            "descripcion": "Construcci\u0000n de las paredes y estructura del edificio.",
+            "fecha_inicio": "2025-03-17",
+            "fecha_fin": "2025-03-31",
+            "id_proyecto": 1,
             "dependencias": [
-                "49"
+                "1"
             ]
         },
         {
-            "id_tarea": 51,
-            "nombre": "lalalla",
-            "descripcion": "a",
-            "fecha_inicio": "2025-04-10",
+            "id_tarea": 3,
+            "nombre": "Instalaci\u0000n de Fontaner\u0000a",
+            "descripcion": "Colocaci\u0000n de tuber\u0000as y sistemas de agua.",
+            "fecha_inicio": "2025-04-01",
+            "fecha_fin": "2025-04-15",
+            "id_proyecto": 1,
+            "dependencias": []
+        },
+        {
+            "id_tarea": 4,
+            "nombre": "Instalaci\u0000n de Electricidad",
+            "descripcion": "Instalaci\u0000n del sistema el\u0000ctrico (cables, enchufes, etc.).",
+            "fecha_inicio": "2025-04-01",
+            "fecha_fin": "2025-04-15",
+            "id_proyecto": 1,
+            "dependencias": []
+        },
+        {
+            "id_tarea": 5,
+            "nombre": "Techo",
+            "descripcion": "Construcci\u0000n del techo del edificio.",
+            "fecha_inicio": "2025-04-01",
+            "fecha_fin": "2025-04-15",
+            "id_proyecto": 1,
+            "dependencias": [
+                "2"
+            ]
+        },
+        {
+            "id_tarea": 6,
+            "nombre": "Pintura y Acabados",
+            "descripcion": "Pintura de las paredes y trabajos de acabado de interiores.",
+            "fecha_inicio": "2025-04-01",
             "fecha_fin": "2025-04-16",
-            "id_proyecto": 7,
+            "id_proyecto": 1,
             "dependencias": [
-                "50"
+                "2"
             ]
         },
         {
-            "id_tarea": 52,
-            "nombre": "qqqq",
-            "descripcion": "q",
-            "fecha_inicio": "2025-03-04",
-            "fecha_fin": "2025-03-08",
-            "id_proyecto": 7,
-            "dependencias": []
-        },
-        {
-            "id_tarea": 54,
-            "nombre": "toto",
-            "descripcion": "aa",
-            "fecha_inicio": "2025-04-22",
-            "fecha_fin": "2025-04-29",
-            "id_proyecto": 8,
+            "id_tarea": 6,
+            "nombre": "15",
+            "descripcion": "Pintura de las paredes y trabajos de acabado de interiores.",
+            "fecha_inicio": "2025-04-01",
+            "fecha_fin": "2025-04-16",
+            "id_proyecto": "1",
             "dependencias": [
-                "53"
+                "2"
             ]
         },
         {
-            "id_tarea": 55,
-            "nombre": "soss",
-            "descripcion": "a",
-            "fecha_inicio": "2025-04-30",
-            "fecha_fin": "2025-05-05",
-            "id_proyecto": 8,
+            "id_tarea": 6,
+            "nombre": "15",
+            "descripcion": "Pintura de las paredes y trabajos de acabado de interiores.",
+            "fecha_inicio": "2025-04-01",
+            "fecha_fin": "2025-04-16",
+            "id_proyecto": "1",
             "dependencias": [
-                "54"
+                "2"
             ]
         },
         {
-            "id_tarea": 56,
-            "nombre": "fdfsfss",
-            "descripcion": "sdfdsf",
-            "fecha_inicio": "2025-03-07",
+            "id_tarea": 6,
+            "nombre": "15",
+            "descripcion": "Pintura de las paredes y trabajos de acabado de interiores.",
+            "fecha_inicio": "2025-04-01",
+            "fecha_fin": "2025-04-16",
+            "id_proyecto": "1",
+            "dependencias": [
+                "2"
+            ]
+        },
+        {
+            "id_tarea": 7,
+            "nombre": "Instalaci\u0000n de Ventanas y Puertas",
+            "descripcion": "Colocaci\u0000n de ventanas y puertas en el edificio.",
+            "fecha_inicio": "2025-04-01",
+            "fecha_fin": "2025-04-15",
+            "id_proyecto": "1",
+            "dependencias": [
+                "2"
+            ]
+        },
+        {
+            "id_tarea": 8,
+            "nombre": "Instalaci\u0000n de Piso",
+            "descripcion": "Colocaci\u0000n de pisos y cer\u0000micas en toda la casa.",
+            "fecha_inicio": "2025-04-17",
+            "fecha_fin": "2025-05-01",
+            "id_proyecto": "1",
+            "dependencias": [
+                "6"
+            ]
+        },
+        {
+            "id_tarea": 9,
+            "nombre": "Revisi\u0000n Final",
+            "descripcion": "Revisi\u0000n de todos los detalles y ajuste de cualquier inconveniente en el trabajo",
+            "fecha_inicio": "2025-05-02",
             "fecha_fin": "2025-05-16",
-            "id_proyecto": 10,
-            "dependencias": []
-        },
-        {
-            "id_tarea": 60,
-            "nombre": "tomate",
-            "descripcion": "ytyty",
-            "fecha_inicio": "2025-03-03",
-            "fecha_fin": "2025-03-07",
-            "id_proyecto": 12,
-            "dependencias": []
-        },
-        {
-            "id_tarea": 61,
-            "nombre": "tarea ave fenix",
-            "descripcion": "es una tarea de prueba",
-            "fecha_inicio": "2025-12-04",
-            "fecha_fin": "2025-12-06",
-            "id_proyecto": 15,
-            "dependencias": []
-        },
-        {
-            "id_tarea": 62,
-            "nombre": "tarea ave fenix 2",
-            "descripcion": "es otra tarea de prueba",
-            "fecha_inicio": "2025-12-07",
-            "fecha_fin": "2025-12-09",
-            "id_proyecto": 15,
+            "id_proyecto": "1",
             "dependencias": [
-                "61"
+                "8"
             ]
         },
         {
-            "id_tarea": 63,
-            "nombre": "tarea3",
-            "descripcion": "prueba",
-            "fecha_inicio": "2025-12-10",
-            "fecha_fin": "2025-12-12",
-            "id_proyecto": 15,
+            "id_tarea": 10,
+            "nombre": "Entrega de la Casa",
+            "descripcion": "Entrega de la casa terminada al propietario.",
+            "fecha_inicio": "2025-05-17",
+            "fecha_fin": "2025-05-31",
+            "id_proyecto": "1",
             "dependencias": [
-                "62"
-            ]
-        },
-        {
-            "id_tarea": 63,
-            "nombre": "tarea3",
-            "descripcion": "prueba",
-            "fecha_inicio": "2025-12-10",
-            "fecha_fin": "2025-12-12",
-            "id_proyecto": 15,
-            "dependencias": [
-                "62"
-            ]
-        },
-        {
-            "id_tarea": 63,
-            "nombre": "tarea3",
-            "descripcion": "prueba",
-            "fecha_inicio": "2025-12-10",
-            "fecha_fin": "2025-12-12",
-            "id_proyecto": 15,
-            "dependencias": [
-                "62"
-            ]
-        },
-        {
-            "id_tarea": 63,
-            "nombre": "tarea3",
-            "descripcion": "prueba",
-            "fecha_inicio": "2025-12-10",
-            "fecha_fin": "2025-12-12",
-            "id_proyecto": 15,
-            "dependencias": [
-                "62"
+                "9"
             ]
         }
     ]

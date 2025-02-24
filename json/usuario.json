@@ -14,21 +14,9 @@
         },
         {
             "id_usuario": 3,
-            "nombre": "",
-            "email": "",
-            "clave": ""
-        },
-        {
-            "id_usuario": 4,
-            "nombre": "flor",
-            "email": "flor",
-            "clave": "flor"
-        },
-        {
-            "id_usuario": 5,
-            "nombre": "",
-            "email": "",
-            "clave": ""
+            "nombre": "Florencia",
+            "email": "florencia@gmail.com",
+            "clave": "1234"
         }
     ]
 }
